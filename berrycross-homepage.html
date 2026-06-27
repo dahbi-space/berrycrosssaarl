@@ -283,13 +283,6 @@
       box-shadow:0 10px 26px rgba(37,211,102,.45);font-size:1.7rem;transition:transform .15s;
     }
     .bc-float-wa:hover{transform:scale(1.08)}
-    .bc-float-quote{
-      background:var(--bc-gold);color:#241a00;font-family:'Poppins',sans-serif;font-weight:600;
-      padding:12px 20px;border-radius:999px;box-shadow:0 10px 26px rgba(242,169,12,.4);
-      display:none;align-items:center;gap:.5em;font-size:.92rem;
-    }
-    .bc-float-quote.is-visible{display:inline-flex}
-    .bc-float-quote:hover{transform:translateY(-2px)}
 
     /* ---- scroll reveal (triggers once) ---- */
     .bc-reveal{opacity:0;transform:translateY(26px);transition:opacity .55s ease-in-out,transform .55s ease-in-out}
@@ -722,9 +715,8 @@
     </div>
   </section>
 
-  <!-- ============ FLOATING BUTTONS ============ -->
+  <!-- ============ FLOATING BUTTON ============ -->
   <div class="bc-float">
-    <a class="bc-btn bc-float-quote" id="bc-float-quote" href="#" data-wa data-wa-msg="Hello BerryCross, I'd like to request a quote for your Moroccan berries / avocados. Please share pricing, packaging and availability.">✅ Request a Quote</a>
     <a class="bc-float-wa" id="bc-float-wa" aria-label="Chat with BerryCross on WhatsApp" href="#" target="_blank" rel="noopener">💬</a>
   </div>
 
@@ -789,15 +781,6 @@
           }
         });
       });
-
-      /* Sticky "Request a Quote" button appears after scroll */
-      var floatQuote = root.querySelector('#bc-float-quote');
-      function onScroll(){
-        if(window.scrollY > 600){ floatQuote.classList.add('is-visible'); }
-        else{ floatQuote.classList.remove('is-visible'); }
-      }
-      window.addEventListener('scroll', onScroll, {passive:true});
-      onScroll();
 
       /* FAQ accordion */
       root.querySelectorAll('.bc-acc-q').forEach(function(btn){
