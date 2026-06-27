@@ -161,9 +161,34 @@
     /* ---- export markets ---- */
     .bc-markets-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(26px,4vw,48px);align-items:center}
     .bc-map img{border-radius:var(--bc-radius);box-shadow:var(--bc-shadow);width:100%}
+    /* animated route map */
+    .bc-map-svg{position:relative;width:100%;aspect-ratio:1000/660;border-radius:var(--bc-radius);box-shadow:var(--bc-shadow);overflow:hidden;background:linear-gradient(160deg,#fbfaf5,var(--bc-cream))}
+    .bc-map-svg svg{display:block;width:100%;height:100%}
+    .bc-arc-bg{fill:none;stroke:var(--bc-green);stroke-width:1.4;opacity:.10;stroke-linecap:round}
+    .bc-arc{fill:none;stroke:var(--bc-green);stroke-width:2.4;stroke-linecap:round;opacity:0}
+    .bc-ship{fill:var(--bc-gold)}
+    .bc-ship-seam{stroke:#241a00;stroke-width:1.1;opacity:.45}
+    .bc-dot-ring{fill:none;stroke:var(--bc-gold);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:bc-pulse 2.8s ease-in-out infinite}
+    .bc-dot-core{fill:var(--bc-gold);transform-box:fill-box;transform-origin:center}
+    .bc-dot-g.bc-arrive .bc-dot-core{animation:bc-arrive .7s ease-in-out}
+    .bc-origin-ring{fill:none;stroke:var(--bc-green);stroke-width:2;transform-box:fill-box;transform-origin:center;animation:bc-pulse 2.8s ease-in-out infinite}
+    .bc-origin-core{fill:var(--bc-green)}
+    .bc-origin-label{font-family:'Poppins',sans-serif;font-weight:600;font-size:20px;fill:var(--bc-green)}
+    @keyframes bc-pulse{0%{transform:scale(.5);opacity:.6}70%{transform:scale(2.1);opacity:0}100%{transform:scale(2.1);opacity:0}}
+    @keyframes bc-arrive{0%{transform:scale(1)}40%{transform:scale(1.95)}100%{transform:scale(1)}}
+    /* badges */
     .bc-pills{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 24px}
-    .bc-pill{background:#fff;border:1px solid var(--bc-line);border-radius:999px;padding:9px 16px;font-weight:600;font-size:.9rem;color:var(--bc-green);box-shadow:var(--bc-shadow-sm)}
-    .bc-pill::before{content:"📍";margin-right:.4em}
+    .bc-pill{background:#fff;border:1px solid var(--bc-line);border-radius:999px;padding:9px 16px;font-weight:600;font-size:.9rem;color:var(--bc-green);box-shadow:var(--bc-shadow-sm);transition:transform .35s ease-in-out,box-shadow .35s ease-in-out,background .35s ease-in-out,border-color .35s ease-in-out}
+    .bc-pill::before{content:"📍";margin-right:.4em;display:inline-block;animation:bc-bob 3s ease-in-out infinite}
+    .bc-pill:nth-child(2n)::before{animation-delay:.4s}
+    .bc-pill:nth-child(3n)::before{animation-delay:.8s}
+    .bc-pill:nth-child(4n)::before{animation-delay:1.2s}
+    .bc-pills .bc-pill:hover{transform:translateY(-3px) scale(1.04);box-shadow:var(--bc-shadow);border-color:var(--bc-gold)}
+    .bc-pills .bc-pill.bc-pill-hot{background:rgba(242,169,12,.16);border-color:var(--bc-gold);box-shadow:0 6px 18px rgba(242,169,12,.30)}
+    @keyframes bc-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+    @media(prefers-reduced-motion:reduce){
+      .bc-pill::before,.bc-dot-ring,.bc-origin-ring{animation:none}
+    }
 
     /* ---- why choose / icon cards ---- */
     .bc-feat{display:flex;gap:16px;align-items:flex-start}
@@ -487,8 +512,12 @@
       </div>
       <div class="bc-markets-grid">
         <div class="bc-map">
-          <!-- REPLACE: export map — stylized world map highlighting target export countries -->
-          <img src="https://placehold.co/640x440/f7f5ef/16432e?text=World+Map+%E2%80%94+Export+Destinations" alt="Stylized world map highlighting BerryCross export destinations across Europe and the Middle East">
+          <!-- Animated export-route map: rendered by JS into the container below (origin = Morocco, arcs to each destination). -->
+          <div class="bc-map-svg" id="bc-map-svg" role="img" aria-label="Stylized map showing BerryCross export routes from Morocco to destination countries across Europe, the Middle East and beyond"></div>
+          <noscript>
+            <!-- REPLACE (optional): static export-map image shown only when JavaScript is disabled -->
+            <img src="https://placehold.co/640x440/f7f5ef/16432e?text=World+Map+%E2%80%94+Export+Destinations" alt="Stylized world map highlighting BerryCross export destinations across Europe and the Middle East">
+          </noscript>
         </div>
         <div>
           <p>We ship to established and emerging markets across Europe and the Middle East, with new destinations added every season.</p>
@@ -821,6 +850,145 @@
           counts.forEach(runCount);
         }
       }
+
+      /* ---------- Export-markets animated route map ---------- */
+      (function(){
+        var host = root.querySelector('#bc-map-svg');
+        if(!host) return;
+        var W = 1000, H = 660, NS = 'http://www.w3.org/2000/svg';
+        var origin = {x:250, y:470};
+        /* destinations in the SAME order as the country badges */
+        var dests = [
+          {x:560,y:235},{x:470,y:285},{x:510,y:210},{x:505,y:235},
+          {x:390,y:360},{x:560,y:330},{x:440,y:200},{x:800,y:430},
+          {x:880,y:410},{x:855,y:420},{x:820,y:380},{x:740,y:150}
+        ];
+        function el(n,a){ var e=document.createElementNS(NS,n); if(a){ for(var k in a){ e.setAttribute(k,a[k]); } } return e; }
+
+        var svg = el('svg',{viewBox:'0 0 '+W+' '+H, preserveAspectRatio:'xMidYMid meet'});
+
+        /* soft blur for landmasses */
+        var defs = el('defs'); var filt = el('filter',{id:'bc-soft'});
+        filt.appendChild(el('feGaussianBlur',{stdDeviation:'14'}));
+        defs.appendChild(filt); svg.appendChild(defs);
+
+        /* faint map grid */
+        var grid = el('g',{stroke:'#16432e','stroke-width':'1',opacity:'0.05'});
+        for(var gx=90; gx<W; gx+=90){ grid.appendChild(el('line',{x1:gx,y1:0,x2:gx,y2:H})); }
+        for(var gy=70; gy<H; gy+=90){ grid.appendChild(el('line',{x1:0,y1:gy,x2:W,y2:gy})); }
+        svg.appendChild(grid);
+
+        /* faint stylized landmasses (Europe / N. Africa / Arabia / East) */
+        var land = el('g',{fill:'#16432e',opacity:'0.10',filter:'url(#bc-soft)'});
+        [[500,250,210,130],[300,490,240,110],[820,420,150,120],[760,165,185,90],[600,300,120,90]].forEach(function(b){
+          land.appendChild(el('ellipse',{cx:b[0],cy:b[1],rx:b[2],ry:b[3]}));
+        });
+        svg.appendChild(land);
+
+        var arcLayer = el('g'), dotLayer = el('g'), shipLayer = el('g');
+        svg.appendChild(arcLayer); svg.appendChild(dotLayer); svg.appendChild(shipLayer);
+
+        /* origin (Morocco) marker */
+        var og = el('g',{transform:'translate('+origin.x+' '+origin.y+')'});
+        og.appendChild(el('circle',{r:16,'class':'bc-origin-ring'}));
+        og.appendChild(el('circle',{r:6.5,'class':'bc-origin-core'}));
+        var ot = el('text',{x:0,y:36,'text-anchor':'middle','class':'bc-origin-label'}); ot.textContent = 'Morocco';
+        og.appendChild(ot);
+        svg.appendChild(og);
+
+        /* must be in the DOM before measuring path lengths */
+        host.appendChild(svg);
+
+        var routes = [];
+        dests.forEach(function(d,i){
+          var mx=(origin.x+d.x)/2, my=(origin.y+d.y)/2;
+          var dist=Math.hypot(d.x-origin.x, d.y-origin.y);
+          var cpx=mx, cpy=my - dist*0.32 - 20;            /* lift control point for the flight-arc */
+          var dStr='M'+origin.x+' '+origin.y+' Q'+cpx+' '+cpy+' '+d.x+' '+d.y;
+          arcLayer.appendChild(el('path',{d:dStr,'class':'bc-arc-bg'}));
+          var arc = el('path',{d:dStr,'class':'bc-arc'});
+          arcLayer.appendChild(arc);
+          var L = arc.getTotalLength();
+          arc.style.strokeDasharray = L; arc.style.strokeDashoffset = L;
+
+          var dg = el('g',{'class':'bc-dot-g',transform:'translate('+d.x+' '+d.y+')'});
+          dg.appendChild(el('circle',{r:14,'class':'bc-dot-ring',style:'animation-delay:'+(i*0.22)+'s'}));
+          dg.appendChild(el('circle',{r:5.5,'class':'bc-dot-core'}));
+          dotLayer.appendChild(dg);
+
+          var ship = el('g',{'class':'bc-ship-g',opacity:'0'});      /* small shipping box */
+          ship.appendChild(el('rect',{x:-8,y:-6,width:16,height:12,rx:2.5,'class':'bc-ship'}));
+          ship.appendChild(el('line',{x1:-8,y1:0,x2:8,y2:0,'class':'bc-ship-seam'}));
+          ship.appendChild(el('line',{x1:0,y1:-6,x2:0,y2:6,'class':'bc-ship-seam'}));
+          shipLayer.appendChild(ship);
+
+          routes.push({arc:arc, L:L, ship:ship, dg:dg, badge:null, fired:false, cycle:-1});
+        });
+
+        /* pair each route with its matching badge (same order) */
+        var badges = root.querySelectorAll('.bc-pills .bc-pill');
+        routes.forEach(function(r,i){ r.badge = badges[i] || null; });
+
+        if(reduceMotion){
+          routes.forEach(function(r){ r.arc.style.strokeDashoffset = 0; r.arc.style.opacity = 0.9; });
+          return;
+        }
+
+        var T = 5200, stagger = 520, travelFrac = 0.6, holdFrac = 0.22;
+        var startTime = null, raf = null;
+
+        function flash(r){
+          r.dg.classList.add('bc-arrive');
+          setTimeout(function(){ r.dg.classList.remove('bc-arrive'); }, 700);
+          if(r.badge){
+            r.badge.classList.add('bc-pill-hot');
+            setTimeout(function(){ r.badge.classList.remove('bc-pill-hot'); }, 650);
+          }
+        }
+
+        function frame(now){
+          if(startTime === null) startTime = now;
+          var t = now - startTime;
+          for(var i=0;i<routes.length;i++){
+            var r = routes[i];
+            var local = t - i*stagger;
+            if(local < 0){ r.ship.setAttribute('opacity',0); r.arc.style.opacity = 0; continue; }
+            var cyc = Math.floor(local / T);
+            if(cyc !== r.cycle){ r.cycle = cyc; r.fired = false; }
+            var p = (local % T) / T;
+            if(p < travelFrac){
+              var tp = p / travelFrac;
+              var pt = r.arc.getPointAtLength(tp * r.L);          /* ship draws the arc as it flies */
+              r.ship.setAttribute('transform','translate('+pt.x+' '+pt.y+')');
+              r.ship.setAttribute('opacity', Math.min(tp*5,1) * Math.min((1-tp)*6+0.25,1));
+              r.arc.style.strokeDashoffset = r.L * (1 - tp);
+              r.arc.style.opacity = 0.9;
+            } else if(p < travelFrac + holdFrac){
+              r.arc.style.strokeDashoffset = 0; r.arc.style.opacity = 0.9;
+              r.ship.setAttribute('opacity', 0);
+              if(!r.fired){ r.fired = true; flash(r); }            /* arrival -> pulse dot + highlight badge */
+            } else {
+              var fp = (p - (travelFrac + holdFrac)) / (1 - travelFrac - holdFrac);
+              r.arc.style.opacity = 0.9 * (1 - fp);                /* gentle fade before the loop restarts */
+              r.ship.setAttribute('opacity', 0);
+            }
+          }
+          raf = requestAnimationFrame(frame);
+        }
+
+        function start(){ if(!raf){ raf = requestAnimationFrame(frame); } }
+        function stop(){ if(raf){ cancelAnimationFrame(raf); raf = null; startTime = null; routes.forEach(function(r){ r.ship.setAttribute('opacity',0); }); } }
+
+        if('IntersectionObserver' in window){
+          new IntersectionObserver(function(es){
+            es.forEach(function(e){ e.isIntersecting ? start() : stop(); });
+          }, {threshold:0.2}).observe(host);
+        } else { start(); }
+        document.addEventListener('visibilitychange', function(){
+          if(document.hidden){ stop(); }
+          else if(host.getBoundingClientRect().top < window.innerHeight && host.getBoundingClientRect().bottom > 0){ start(); }
+        });
+      })();
 
       /* Quote form -> WhatsApp (mailto fallback) */
       var form = root.querySelector('#bc-quote-form');
