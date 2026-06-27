@@ -286,6 +286,37 @@
     }
     .bc-float-wa:hover{transform:scale(1.08)}
 
+    /* ---- availability calendar ---- */
+    .bc-cal-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:6px}
+    .bc-cal{min-width:720px}
+    .bc-cal-row{display:flex;align-items:stretch;opacity:0;transform:translateY(18px);transition:opacity .5s ease-in-out,transform .5s ease-in-out}
+    .bc-cal-go .bc-cal-row{opacity:1;transform:none}
+    .bc-cal-label{flex:0 0 132px;display:flex;align-items:center;font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem;color:var(--bc-green);padding-right:14px}
+    .bc-cal-months{flex:1;position:relative;display:grid;grid-template-columns:repeat(12,1fr)}
+    .bc-cal-header .bc-cal-monthsbar{background:var(--bc-green);border-radius:10px;overflow:hidden}
+    .bc-cal-h{color:#fff;text-align:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:.82rem;padding:12px 0;letter-spacing:.02em}
+    .bc-cal-header{margin-bottom:6px}
+    .bc-cal-row:not(.bc-cal-header):nth-of-type(even){background:rgba(22,67,46,.035);border-radius:10px}
+    .bc-cal-row:not(.bc-cal-header):hover{background:rgba(242,169,12,.10)}
+    .bc-cal-cell{display:flex;align-items:center;justify-content:center;padding:12px 0 18px;cursor:default}
+    .bc-cal-ico{width:30px;height:30px;color:#c6c3ba;transition:transform .4s ease-out,opacity .4s ease-out;transition-delay:var(--d,0ms)}
+    .bc-cal-ico svg,.bc-cal-ico use{pointer-events:none}
+    .bc-cal-cell.is-on .bc-cal-ico{color:var(--bc-green);transform:scale(.5);opacity:0}
+    .bc-cal-go .bc-cal-cell.is-on .bc-cal-ico{transform:none;opacity:1}
+    .bc-cal-bars{position:absolute;left:0;right:0;bottom:8px;height:7px;pointer-events:none}
+    .bc-cal-seg{position:absolute;bottom:0;height:7px;width:0;background:var(--bc-gold);border-radius:999px;box-shadow:0 2px 6px rgba(242,169,12,.35);transition:width .6s ease-in-out;transition-delay:var(--bd,0ms)}
+    .bc-cal-go .bc-cal-seg{width:var(--w)}
+    .bc-cal-legend{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;margin-top:22px}
+    .bc-cal-leg{display:inline-flex;align-items:center;gap:.5em;font-size:.88rem;color:var(--bc-grey);font-weight:600}
+    .bc-cal-leg-sw{width:26px;height:8px;border-radius:999px;display:inline-block}
+    .bc-cal-leg-on{background:var(--bc-gold)}
+    .bc-cal-leg-off{background:#c6c3ba}
+    .bc-cal-tip{position:absolute;left:0;top:0;pointer-events:none;background:var(--bc-green);color:#fff;font-family:'Inter',sans-serif;font-size:.76rem;font-weight:600;padding:5px 10px;border-radius:8px;white-space:nowrap;transform:translate(-50%,-140%);opacity:0;transition:opacity .18s ease;box-shadow:var(--bc-shadow-sm);z-index:5}
+    .bc-cal-tip.bc-on{opacity:1}
+    @media(prefers-reduced-motion:reduce){
+      .bc-cal-row,.bc-cal-ico,.bc-cal-seg{transition:none}
+    }
+
     /* ---- scroll reveal (triggers once) ---- */
     .bc-reveal{opacity:0;transform:translateY(26px);transition:opacity .55s ease-in-out,transform .55s ease-in-out}
     .bc-reveal.bc-in{opacity:1;transform:none}
@@ -488,6 +519,24 @@
             <a class="bc-btn bc-btn--outline bc-btn--sm" href="/products/avocados">View Product</a>
           </div>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5b) AVAILABILITY CALENDAR ============ -->
+  <section class="bc-section bc-section--cream" id="bc-availability">
+    <div class="bc-wrap">
+      <div class="bc-head">
+        <span class="bc-eyebrow">Seasonality</span>
+        <h2>Availability Calendar</h2>
+        <p>When each crop is in season and ready for export — edit the ranges any time from one data array.</p>
+      </div>
+      <div class="bc-cal-scroll">
+        <div class="bc-cal" id="bc-cal"><!-- grid built automatically from the data array in the script --></div>
+      </div>
+      <div class="bc-cal-legend">
+        <span class="bc-cal-leg"><span class="bc-cal-leg-sw bc-cal-leg-on"></span> In season</span>
+        <span class="bc-cal-leg"><span class="bc-cal-leg-sw bc-cal-leg-off"></span> Limited / off-season</span>
       </div>
     </div>
   </section>
@@ -788,6 +837,111 @@
           }
         });
       });
+
+      /* ============================================================
+         AVAILABILITY CALENDAR  —  EDIT HERE
+         To change a season, rename a fruit, reorder rows, or add/remove a
+         row, edit ONLY the `availability` array below. Use the same month
+         spellings as MONTHS. Everything (grid, icons, season bars, colours,
+         animation) rebuilds automatically. Switch HEADER_STYLE to 'roman' for
+         I–XII, or 'short' for Jan–Dec.
+         ============================================================ */
+      (function(){
+        var host = root.querySelector('#bc-cal');
+        if(!host) return;
+
+        var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        var HEADER_STYLE = 'short';            // 'short' (Jan,Feb…) or 'roman' (I,II…)
+        var availability = [
+          { name:'Blueberries',  inSeason:['Nov','Dec','Jan','Feb','Mar','Apr','May'] },
+          { name:'Raspberries',  inSeason:['Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'] },
+          { name:'Blackberries', inSeason:['Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'] },
+          { name:'Strawberries', inSeason:['Dec','Jan','Feb','Mar','Apr','May'] },
+          { name:'Avocados',     inSeason:['Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr'] }
+        ];
+        /* ===== end of editable data ===== */
+
+        var ROMAN = ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
+        var headerLabels = HEADER_STYLE === 'roman' ? ROMAN : MONTHS;
+        function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;'); }
+        function slug(s){ return String(s).toLowerCase().replace(/[^a-z0-9]/g,''); }
+        var KNOWN = {blueberries:1,raspberries:1,blackberries:1,strawberries:1,avocados:1};
+        function icoId(name){ var sl = slug(name); return KNOWN[sl] ? sl : 'generic'; }
+
+        /* clean line-style fruit icons (stroke = currentColor) */
+        var DEFS = '<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>'
+          + '<symbol id="cal-blueberries" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.2" cy="14.5" r="4.3"/><circle cx="15.2" cy="15.3" r="3.7"/><path d="M7.4 12.4l1.8 1.4 1.8-1.4"/><path d="M13.5 13.4l1.7 1.2 1.7-1.2"/><path d="M10 8.5c0-2 1.4-3.2 3.4-3.5"/><path d="M13.4 5c.9.1 1.7.7 2 1.7"/></g></symbol>'
+          + '<symbol id="cal-raspberries" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11.5" r="1.7"/><circle cx="9.6" cy="13.4" r="1.7"/><circle cx="14.4" cy="13.4" r="1.7"/><circle cx="11" cy="15.4" r="1.7"/><circle cx="13" cy="15.4" r="1.7"/><circle cx="12" cy="17.4" r="1.7"/><path d="M12 8.8c0-2 .9-3.4 3-3.8"/><path d="M12 8.8c0-1.6-.9-2.8-2.6-3.2"/></g></symbol>'
+          + '<symbol id="cal-blackberries" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="10.5" r="1.6"/><circle cx="9.8" cy="12.2" r="1.6"/><circle cx="14.2" cy="12.2" r="1.6"/><circle cx="10.4" cy="14.2" r="1.6"/><circle cx="13.6" cy="14.2" r="1.6"/><circle cx="11.2" cy="16.2" r="1.6"/><circle cx="12.8" cy="16.2" r="1.6"/><circle cx="12" cy="18.1" r="1.6"/><path d="M12 7.8c0-1.8 1-3 2.8-3.4"/></g></symbol>'
+          + '<symbol id="cal-strawberries" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20.5c-3.4-2.4-5.5-5.3-5.5-8.2 0-2.8 2.4-4.8 5.5-4.8s5.5 2 5.5 4.8c0 2.9-2.1 5.8-5.5 8.2z"/><path d="M8.5 7.6 12 5.8l3.5 1.8"/><path d="M12 5.8V8"/><path d="M9.9 12.3l.01.01M12 13.5l.01.01M14.1 12.3l.01.01M11 15.7l.01.01M13 15.7l.01.01"/></g></symbol>'
+          + '<symbol id="cal-avocados" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5c-2.6 0-4.6 2.2-4.6 5 0 4.4 2 12 4.6 12s4.6-7.6 4.6-12c0-2.8-2-5-4.6-5z"/><circle cx="12" cy="13.5" r="2.8"/></g></symbol>'
+          + '<symbol id="cal-generic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="14" r="4"/><circle cx="15" cy="15" r="3.4"/><path d="M11 8c0-1.8 1.2-3 3-3.4"/></g></symbol>'
+          + '</defs></svg>';
+
+        /* header row */
+        var html = DEFS;
+        html += '<div class="bc-cal-row bc-cal-header"><div class="bc-cal-label"></div><div class="bc-cal-months bc-cal-monthsbar">';
+        for(var h=0; h<12; h++){ html += '<div class="bc-cal-h">'+esc(headerLabels[h])+'</div>'; }
+        html += '</div></div>';
+
+        /* product rows */
+        availability.forEach(function(p, ri){
+          var on = MONTHS.map(function(m){ return p.inSeason.indexOf(m) >= 0; });
+          var rowDelay = ri * 120;
+          var cells = '', onIdx = 0;
+          for(var i=0; i<12; i++){
+            var d = on[i] ? (rowDelay + 250 + onIdx*45) : 0;
+            if(on[i]) onIdx++;
+            cells += '<div class="bc-cal-cell'+(on[i]?' is-on':'')+'" style="--d:'+d+'ms" data-name="'+esc(p.name)+'" data-month="'+esc(headerLabels[i])+'" data-on="'+(on[i]?1:0)+'">'
+                   +  '<span class="bc-cal-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#cal-'+icoId(p.name)+'" xlink:href="#cal-'+icoId(p.name)+'"/></svg></span></div>';
+          }
+          /* contiguous in-season runs -> one season bar each */
+          var bars = '', i2 = 0;
+          while(i2 < 12){
+            if(on[i2]){ var j = i2; while(j+1<12 && on[j+1]) j++; var len = j - i2 + 1;
+              bars += '<span class="bc-cal-seg" style="left:'+(i2/12*100)+'%;--w:'+(len/12*100)+'%;--bd:'+(rowDelay+200)+'ms"></span>';
+              i2 = j + 1;
+            } else i2++;
+          }
+          html += '<div class="bc-cal-row" style="transition-delay:'+rowDelay+'ms" data-name="'+esc(p.name)+'">'
+                + '<div class="bc-cal-label">'+esc(p.name)+'</div>'
+                + '<div class="bc-cal-months"><div class="bc-cal-bars">'+bars+'</div>'+cells+'</div></div>';
+        });
+
+        host.innerHTML = html;
+        host.style.position = 'relative';
+
+        /* tooltip */
+        var tip = document.createElement('div');
+        tip.className = 'bc-cal-tip';
+        host.appendChild(tip);
+        host.addEventListener('mouseover', function(ev){
+          var cell = ev.target.closest('.bc-cal-cell'); if(!cell) return;
+          var r = host.getBoundingClientRect();
+          tip.textContent = cell.getAttribute('data-name') + ' · ' + cell.getAttribute('data-month') + ' · ' + (cell.getAttribute('data-on')==='1' ? 'In season' : 'Off-season');
+          tip.style.left = (ev.clientX - r.left) + 'px';
+          tip.style.top  = (ev.clientY - r.top) + 'px';
+          tip.classList.add('bc-on');
+        });
+        host.addEventListener('mousemove', function(ev){
+          if(!tip.classList.contains('bc-on')) return;
+          var cell = ev.target.closest('.bc-cal-cell'); if(!cell){ tip.classList.remove('bc-on'); return; }
+          var r = host.getBoundingClientRect();
+          tip.style.left = (ev.clientX - r.left) + 'px';
+          tip.style.top  = (ev.clientY - r.top) + 'px';
+        });
+        host.addEventListener('mouseout', function(ev){ if(!ev.relatedTarget || !host.contains(ev.relatedTarget)) tip.classList.remove('bc-on'); });
+
+        /* reveal once */
+        function go(){ host.classList.add('bc-cal-go'); }
+        if(reduceMotion || !('IntersectionObserver' in window)){ go(); }
+        else {
+          var io = new IntersectionObserver(function(es, obs){
+            es.forEach(function(e){ if(e.isIntersecting){ go(); obs.disconnect(); } });
+          }, {threshold:0.2});
+          io.observe(host);
+        }
+      })();
 
       /* Product images: if your local photo is missing, show a clean labelled placeholder (no random stock) */
       root.querySelectorAll('.bc-prod-img').forEach(function(img){
