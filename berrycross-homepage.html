@@ -139,14 +139,16 @@
     .bc-num-label{font-weight:600;color:var(--bc-green);margin-top:.3em;font-size:.95rem}
 
     /* ---- product cards ---- */
-    .bc-prod{padding:0;overflow:hidden;display:flex;flex-direction:column}
-    .bc-prod img{aspect-ratio:4/3;object-fit:cover;width:100%;transition:transform .5s ease-in-out}
-    .bc-prod:hover img{transform:scale(1.07)}
+    .bc-prod{padding:0;overflow:hidden;display:flex;flex-direction:column;height:100%}
+    .bc-prod-media{position:relative;overflow:hidden}
+    .bc-prod-img{aspect-ratio:4/3;object-fit:cover;width:100%;display:block;transition:transform .5s ease-in-out}
+    .bc-prod:hover .bc-prod-img{transform:scale(1.08)}
+    .bc-prod-media::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to top,rgba(18,28,20,.78) 0%,rgba(18,28,20,.28) 32%,rgba(18,28,20,0) 58%)}
+    .bc-prod .bc-prod-name{position:absolute;left:16px;right:16px;bottom:12px;z-index:2;margin:0;color:#fff;font-size:1.18rem;text-shadow:0 1px 8px rgba(0,0,0,.45)}
     .bc-prod-body{padding:22px;display:flex;flex-direction:column;gap:6px;flex:1}
-    .bc-prod-body h3{margin-bottom:.2em}
     .bc-prod-meta{font-size:.88rem;color:var(--bc-grey);margin:0}
     .bc-prod-meta strong{color:var(--bc-green)}
-    .bc-prod .bc-btn{margin-top:14px}
+    .bc-prod .bc-btn{margin-top:auto;align-self:flex-start}
 
     /* ---- industries / chips ---- */
     .bc-chip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -421,64 +423,69 @@
         <p>Export-ready berries and avocados, packed to your specification and shipped under full cold chain.</p>
       </div>
       <div class="bc-grid bc-g5">
-        <!-- Blueberries -->
+        <!-- Blueberries — drop your own photo at /images/products/blueberries.jpg (the <img src>); until then a real stock photo loads automatically -->
         <article class="bc-card bc-prod">
-          <!-- REPLACE: product — fresh blueberries close-up -->
-          <img src="https://placehold.co/420x320/34508f/ffffff?text=Blueberries" alt="Fresh premium Moroccan blueberries">
+          <div class="bc-prod-media">
+            <img class="bc-prod-img" src="/images/products/blueberries.jpg" data-stock="https://loremflickr.com/640/480/blueberries?lock=21" data-ph="https://placehold.co/640x480/34508f/ffffff?text=Blueberries" alt="Fresh premium Moroccan blueberries" loading="lazy">
+            <h3 class="bc-prod-name">Blueberries</h3>
+          </div>
           <div class="bc-prod-body">
-            <h3>Blueberries</h3>
             <p class="bc-prod-meta"><strong>Available Packaging:</strong> 125g · 250g · 500g punnets · bulk</p>
             <p class="bc-prod-meta"><strong>Season:</strong> Nov – May</p>
             <p class="bc-prod-meta">Firm, sweet, large-calibre berries with excellent shelf life.</p>
-            <a class="bc-btn bc-btn--outline bc-btn--sm" href="#bc-quote" data-wa data-wa-msg="Hello BerryCross, I'm interested in your Blueberries. Please share pricing, packaging and availability.">View Product</a>
+            <a class="bc-btn bc-btn--outline bc-btn--sm" href="/products/blueberries">View Product</a>
           </div>
         </article>
-        <!-- Raspberries -->
+        <!-- Raspberries — drop your own photo at /images/products/raspberries.jpg -->
         <article class="bc-card bc-prod">
-          <!-- REPLACE: product — fresh raspberries close-up -->
-          <img src="https://placehold.co/420x320/b3204e/ffffff?text=Raspberries" alt="Fresh premium Moroccan raspberries">
+          <div class="bc-prod-media">
+            <img class="bc-prod-img" src="/images/products/raspberries.jpg" data-stock="https://loremflickr.com/640/480/raspberry?lock=22" data-ph="https://placehold.co/640x480/b3204e/ffffff?text=Raspberries" alt="Fresh premium Moroccan raspberries" loading="lazy">
+            <h3 class="bc-prod-name">Raspberries</h3>
+          </div>
           <div class="bc-prod-body">
-            <h3>Raspberries</h3>
             <p class="bc-prod-meta"><strong>Available Packaging:</strong> 125g · 250g punnets · bulk</p>
             <p class="bc-prod-meta"><strong>Season:</strong> Oct – Jun</p>
             <p class="bc-prod-meta">Bright, aromatic berries selected for colour and firmness.</p>
-            <a class="bc-btn bc-btn--outline bc-btn--sm" href="#bc-quote" data-wa data-wa-msg="Hello BerryCross, I'm interested in your Raspberries. Please share pricing, packaging and availability.">View Product</a>
+            <a class="bc-btn bc-btn--outline bc-btn--sm" href="/products/raspberries">View Product</a>
           </div>
         </article>
-        <!-- Blackberries -->
+        <!-- Blackberries — drop your own photo at /images/products/blackberries.jpg -->
         <article class="bc-card bc-prod">
-          <!-- REPLACE: product — fresh blackberries close-up -->
-          <img src="https://placehold.co/420x320/2d1b3d/ffffff?text=Blackberries" alt="Fresh premium Moroccan blackberries">
+          <div class="bc-prod-media">
+            <img class="bc-prod-img" src="/images/products/blackberries.jpg" data-stock="https://loremflickr.com/640/480/blackberry?lock=23" data-ph="https://placehold.co/640x480/2d1b3d/ffffff?text=Blackberries" alt="Fresh premium Moroccan blackberries" loading="lazy">
+            <h3 class="bc-prod-name">Blackberries</h3>
+          </div>
           <div class="bc-prod-body">
-            <h3>Blackberries</h3>
             <p class="bc-prod-meta"><strong>Available Packaging:</strong> 125g · 250g punnets · bulk</p>
             <p class="bc-prod-meta"><strong>Season:</strong> Nov – Jun</p>
             <p class="bc-prod-meta">Glossy, full-flavoured berries with consistent calibre.</p>
-            <a class="bc-btn bc-btn--outline bc-btn--sm" href="#bc-quote" data-wa data-wa-msg="Hello BerryCross, I'm interested in your Blackberries. Please share pricing, packaging and availability.">View Product</a>
+            <a class="bc-btn bc-btn--outline bc-btn--sm" href="/products/blackberries">View Product</a>
           </div>
         </article>
-        <!-- Strawberries -->
+        <!-- Strawberries — drop your own photo at /images/products/strawberries.jpg -->
         <article class="bc-card bc-prod">
-          <!-- REPLACE: product — fresh strawberries close-up -->
-          <img src="https://placehold.co/420x320/c0392b/ffffff?text=Strawberries" alt="Fresh premium Moroccan strawberries">
+          <div class="bc-prod-media">
+            <img class="bc-prod-img" src="/images/products/strawberries.jpg" data-stock="https://loremflickr.com/640/480/strawberry?lock=24" data-ph="https://placehold.co/640x480/c0392b/ffffff?text=Strawberries" alt="Fresh premium Moroccan strawberries" loading="lazy">
+            <h3 class="bc-prod-name">Strawberries</h3>
+          </div>
           <div class="bc-prod-body">
-            <h3>Strawberries</h3>
             <p class="bc-prod-meta"><strong>Available Packaging:</strong> 250g · 500g punnets · bulk</p>
             <p class="bc-prod-meta"><strong>Season:</strong> Dec – May</p>
             <p class="bc-prod-meta">Sweet, vivid-red fruit harvested at peak ripeness.</p>
-            <a class="bc-btn bc-btn--outline bc-btn--sm" href="#bc-quote" data-wa data-wa-msg="Hello BerryCross, I'm interested in your Strawberries. Please share pricing, packaging and availability.">View Product</a>
+            <a class="bc-btn bc-btn--outline bc-btn--sm" href="/products/strawberries">View Product</a>
           </div>
         </article>
-        <!-- Avocados -->
+        <!-- Avocados — drop your own photo at /images/products/avocados.jpg -->
         <article class="bc-card bc-prod">
-          <!-- REPLACE: product — fresh avocados close-up -->
-          <img src="https://placehold.co/420x320/16432e/ffffff?text=Avocados" alt="Fresh premium Moroccan Hass avocados">
+          <div class="bc-prod-media">
+            <img class="bc-prod-img" src="/images/products/avocados.jpg" data-stock="https://loremflickr.com/640/480/avocado?lock=25" data-ph="https://placehold.co/640x480/16432e/ffffff?text=Avocados" alt="Fresh premium Moroccan Hass avocados" loading="lazy">
+            <h3 class="bc-prod-name">Avocados</h3>
+          </div>
           <div class="bc-prod-body">
-            <h3>Avocados</h3>
             <p class="bc-prod-meta"><strong>Available Packaging:</strong> 4kg / 10kg cartons · pallets</p>
             <p class="bc-prod-meta"><strong>Season:</strong> Sep – Apr</p>
             <p class="bc-prod-meta">Hass &amp; green-skin varieties, calibrated and export-graded.</p>
-            <a class="bc-btn bc-btn--outline bc-btn--sm" href="#bc-quote" data-wa data-wa-msg="Hello BerryCross, I'm interested in your Avocados. Please share pricing, packaging and availability.">View Product</a>
+            <a class="bc-btn bc-btn--outline bc-btn--sm" href="/products/avocados">View Product</a>
           </div>
         </article>
       </div>
@@ -779,6 +786,16 @@
             e.preventDefault();
             target.scrollIntoView({behavior:'smooth', block:'start'});
           }
+        });
+      });
+
+      /* Product images: graceful fallback chain — your photo -> real stock photo -> labelled placeholder */
+      root.querySelectorAll('.bc-prod-img').forEach(function(img){
+        img.addEventListener('error', function(){
+          var stock = img.getAttribute('data-stock'), ph = img.getAttribute('data-ph'), s = img.src;
+          if(stock && s.indexOf('loremflickr') === -1 && s.indexOf('placehold') === -1){ img.src = stock; }
+          else if(ph && s.indexOf('placehold') === -1){ img.src = ph; }
+          else { img.onerror = null; }
         });
       });
 
