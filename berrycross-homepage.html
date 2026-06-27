@@ -426,7 +426,7 @@
         <!-- Blueberries — drop your own photo at /images/products/blueberries.jpg (the <img src>); until then a real stock photo loads automatically -->
         <article class="bc-card bc-prod">
           <div class="bc-prod-media">
-            <img class="bc-prod-img" src="/images/products/blueberries.jpg" data-stock="https://loremflickr.com/640/480/blueberries?lock=21" data-ph="https://placehold.co/640x480/34508f/ffffff?text=Blueberries" alt="Fresh premium Moroccan blueberries" loading="lazy">
+            <img class="bc-prod-img" src="/images/products/blueberries.jpg" data-ph="https://placehold.co/640x480/34508f/ffffff?text=Blueberries" alt="Fresh premium Moroccan blueberries" loading="lazy">
             <h3 class="bc-prod-name">Blueberries</h3>
           </div>
           <div class="bc-prod-body">
@@ -439,7 +439,7 @@
         <!-- Raspberries — drop your own photo at /images/products/raspberries.jpg -->
         <article class="bc-card bc-prod">
           <div class="bc-prod-media">
-            <img class="bc-prod-img" src="/images/products/raspberries.jpg" data-stock="https://loremflickr.com/640/480/raspberry?lock=22" data-ph="https://placehold.co/640x480/b3204e/ffffff?text=Raspberries" alt="Fresh premium Moroccan raspberries" loading="lazy">
+            <img class="bc-prod-img" src="/images/products/raspberries.jpg" data-ph="https://placehold.co/640x480/b3204e/ffffff?text=Raspberries" alt="Fresh premium Moroccan raspberries" loading="lazy">
             <h3 class="bc-prod-name">Raspberries</h3>
           </div>
           <div class="bc-prod-body">
@@ -452,7 +452,7 @@
         <!-- Blackberries — drop your own photo at /images/products/blackberries.jpg -->
         <article class="bc-card bc-prod">
           <div class="bc-prod-media">
-            <img class="bc-prod-img" src="/images/products/blackberries.jpg" data-stock="https://loremflickr.com/640/480/blackberry?lock=23" data-ph="https://placehold.co/640x480/2d1b3d/ffffff?text=Blackberries" alt="Fresh premium Moroccan blackberries" loading="lazy">
+            <img class="bc-prod-img" src="/images/products/blackberries.jpg" data-ph="https://placehold.co/640x480/2d1b3d/ffffff?text=Blackberries" alt="Fresh premium Moroccan blackberries" loading="lazy">
             <h3 class="bc-prod-name">Blackberries</h3>
           </div>
           <div class="bc-prod-body">
@@ -465,7 +465,7 @@
         <!-- Strawberries — drop your own photo at /images/products/strawberries.jpg -->
         <article class="bc-card bc-prod">
           <div class="bc-prod-media">
-            <img class="bc-prod-img" src="/images/products/strawberries.jpg" data-stock="https://loremflickr.com/640/480/strawberry?lock=24" data-ph="https://placehold.co/640x480/c0392b/ffffff?text=Strawberries" alt="Fresh premium Moroccan strawberries" loading="lazy">
+            <img class="bc-prod-img" src="/images/products/strawberries.jpg" data-ph="https://placehold.co/640x480/c0392b/ffffff?text=Strawberries" alt="Fresh premium Moroccan strawberries" loading="lazy">
             <h3 class="bc-prod-name">Strawberries</h3>
           </div>
           <div class="bc-prod-body">
@@ -478,7 +478,7 @@
         <!-- Avocados — drop your own photo at /images/products/avocados.jpg -->
         <article class="bc-card bc-prod">
           <div class="bc-prod-media">
-            <img class="bc-prod-img" src="/images/products/avocados.jpg" data-stock="https://loremflickr.com/640/480/avocado?lock=25" data-ph="https://placehold.co/640x480/16432e/ffffff?text=Avocados" alt="Fresh premium Moroccan Hass avocados" loading="lazy">
+            <img class="bc-prod-img" src="/images/products/avocados.jpg" data-ph="https://placehold.co/640x480/16432e/ffffff?text=Avocados" alt="Fresh premium Moroccan Hass avocados" loading="lazy">
             <h3 class="bc-prod-name">Avocados</h3>
           </div>
           <div class="bc-prod-body">
@@ -789,12 +789,11 @@
         });
       });
 
-      /* Product images: graceful fallback chain — your photo -> real stock photo -> labelled placeholder */
+      /* Product images: if your local photo is missing, show a clean labelled placeholder (no random stock) */
       root.querySelectorAll('.bc-prod-img').forEach(function(img){
         img.addEventListener('error', function(){
-          var stock = img.getAttribute('data-stock'), ph = img.getAttribute('data-ph'), s = img.src;
-          if(stock && s.indexOf('loremflickr') === -1 && s.indexOf('placehold') === -1){ img.src = stock; }
-          else if(ph && s.indexOf('placehold') === -1){ img.src = ph; }
+          var ph = img.getAttribute('data-ph'), s = img.src;
+          if(ph && s.indexOf('placehold') === -1){ img.src = ph; }
           else { img.onerror = null; }
         });
       });
