@@ -102,11 +102,24 @@
       display:flex;align-items:center;gap:.5em;
     }
 
-    /* ---- trust bar ---- */
-    .bc-trustbar{background:var(--bc-green);color:#fff}
-    .bc-trustbar .bc-wrap{display:flex;flex-wrap:wrap;gap:12px 26px;justify-content:center;padding-top:18px;padding-bottom:18px}
-    .bc-trustbar span{display:inline-flex;align-items:center;gap:.45em;font-weight:600;font-size:.9rem}
-    .bc-trustbar .bc-tick{color:var(--bc-gold)}
+    /* ---- trust bar (seamless marquee) ---- */
+    .bc-trustbar{background:var(--bc-green);color:#fff;overflow:hidden}
+    .bc-marquee{
+      overflow:hidden;padding:18px 0;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+    }
+    .bc-marquee-track{display:flex;width:max-content;align-items:center;animation:bc-marquee 36s linear infinite;will-change:transform}
+    .bc-marquee:hover .bc-marquee-track{animation-play-state:paused}
+    .bc-trustbar .bc-ti{display:inline-flex;align-items:center;gap:.45em;font-weight:600;font-size:.9rem;white-space:nowrap;padding:0 26px}
+    .bc-trustbar .bc-tick{color:var(--bc-gold);animation:bc-tick-pop 2.4s ease-in-out infinite}
+    @keyframes bc-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @keyframes bc-tick-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+    @media(prefers-reduced-motion:reduce){
+      .bc-marquee-track{animation:none;flex-wrap:wrap;justify-content:center;width:auto;gap:12px 0}
+      .bc-trustbar .bc-tick{animation:none}
+      .bc-marquee{-webkit-mask-image:none;mask-image:none}
+    }
 
     /* ---- generic grids ---- */
     .bc-grid{display:grid;gap:22px}
@@ -295,15 +308,27 @@
 
   <!-- ============ 2) TRUST BAR ============ -->
   <section class="bc-trustbar" aria-label="BerryCross credentials">
-    <div class="bc-wrap">
-      <span><span class="bc-tick">✔</span> Producer</span>
-      <span><span class="bc-tick">✔</span> Exporter</span>
-      <span><span class="bc-tick">✔</span> GlobalG.A.P Certified</span>
-      <span><span class="bc-tick">✔</span> GRASP Certified</span>
-      <span><span class="bc-tick">✔</span> Private Label Available</span>
-      <span><span class="bc-tick">✔</span> Cold Chain Logistics</span>
-      <span><span class="bc-tick">✔</span> Air · Sea · Road Freight</span>
-      <span><span class="bc-tick">✔</span> Worldwide Export</span>
+    <div class="bc-marquee">
+      <div class="bc-marquee-track">
+        <!-- visible group -->
+        <span class="bc-ti"><span class="bc-tick">✔</span> Producer</span>
+        <span class="bc-ti"><span class="bc-tick">✔</span> Exporter</span>
+        <span class="bc-ti"><span class="bc-tick">✔</span> GlobalG.A.P Certified</span>
+        <span class="bc-ti"><span class="bc-tick">✔</span> GRASP Certified</span>
+        <span class="bc-ti"><span class="bc-tick">✔</span> Private Label Available</span>
+        <span class="bc-ti"><span class="bc-tick">✔</span> Cold Chain Logistics</span>
+        <span class="bc-ti"><span class="bc-tick">✔</span> Air · Sea · Road Freight</span>
+        <span class="bc-ti"><span class="bc-tick">✔</span> Worldwide Export</span>
+        <!-- duplicate group for a seamless loop (hidden from screen readers) -->
+        <span class="bc-ti" aria-hidden="true"><span class="bc-tick">✔</span> Producer</span>
+        <span class="bc-ti" aria-hidden="true"><span class="bc-tick">✔</span> Exporter</span>
+        <span class="bc-ti" aria-hidden="true"><span class="bc-tick">✔</span> GlobalG.A.P Certified</span>
+        <span class="bc-ti" aria-hidden="true"><span class="bc-tick">✔</span> GRASP Certified</span>
+        <span class="bc-ti" aria-hidden="true"><span class="bc-tick">✔</span> Private Label Available</span>
+        <span class="bc-ti" aria-hidden="true"><span class="bc-tick">✔</span> Cold Chain Logistics</span>
+        <span class="bc-ti" aria-hidden="true"><span class="bc-tick">✔</span> Air · Sea · Road Freight</span>
+        <span class="bc-ti" aria-hidden="true"><span class="bc-tick">✔</span> Worldwide Export</span>
+      </div>
     </div>
   </section>
 
