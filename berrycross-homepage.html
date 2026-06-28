@@ -227,7 +227,8 @@
 
     /* ---- packaging ---- */
     .bc-pack-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-    .bc-pack{background:#fff;border:1px solid var(--bc-line);border-radius:14px;padding:22px 16px;text-align:center;box-shadow:var(--bc-shadow-sm);font-weight:600;color:var(--bc-green)}
+    .bc-pack{background:#fff;border:1px solid var(--bc-line);border-radius:14px;padding:22px 16px;text-align:center;box-shadow:var(--bc-shadow-sm);font-weight:600;color:var(--bc-green);transition:transform .35s ease-in-out,box-shadow .35s ease-in-out}
+    .bc-pack:hover{transform:translateY(-4px);box-shadow:var(--bc-shadow)}
     .bc-pack .bc-ico{font-size:1.7rem;display:block;margin-bottom:.4em}
 
     /* ---- process steps ---- */
@@ -338,7 +339,7 @@
     }
 
     /* ---- scroll reveal (triggers once) ---- */
-    .bc-reveal{opacity:0;transform:translateY(26px);transition:opacity .55s ease-in-out,transform .55s ease-in-out}
+    .bc-reveal{opacity:0;transform:translateY(26px);transition:opacity .55s ease-in-out,transform .55s ease-in-out,box-shadow .35s ease-in-out}
     .bc-reveal.bc-in{opacity:1;transform:none}
     @media(prefers-reduced-motion:reduce){
       .bc-reveal{opacity:1;transform:none;transition:none}
