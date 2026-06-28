@@ -8,9 +8,12 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
     .bc-pp{
-      --bc-green:#16432e;--bc-green-2:#1e5a3e;--bc-gold:#f2a90c;--bc-gold-2:#d8950a;
-      --bc-cream:#f7f5ef;--bc-ink:#1c1c1c;--bc-grey:#5b5f5c;--bc-line:#e6e3da;--bc-blue:#34508f;
-      --bc-radius:18px;--bc-shadow:0 14px 40px rgba(22,67,46,.10);--bc-shadow-sm:0 6px 18px rgba(22,67,46,.08);
+      /* ===== BRAND TOKENS — edit the whole palette here ===== */
+      --navy:#1f2a5e;--navy-2:#2b3a78;--pink:#ee5d87;--pink-2:#d8456b;--olive:#6b7a4f;--cream:#f7f5ef;
+      /* design tokens mapped onto the brand palette */
+      --bc-green:var(--navy);--bc-green-2:var(--navy-2);--bc-gold:var(--pink);--bc-gold-2:var(--pink-2);
+      --bc-cream:var(--cream);--bc-ink:#1c2236;--bc-grey:#5b6070;--bc-line:#e6e3da;--bc-blue:var(--navy);
+      --bc-radius:18px;--bc-shadow:0 14px 40px rgba(31,42,94,.12);--bc-shadow-sm:0 6px 18px rgba(31,42,94,.09);
       --bc-max:1180px;
       font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--bc-ink);line-height:1.65;background:#fff;font-size:16px;
@@ -35,17 +38,20 @@
     /* buttons */
     .bc-pp-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;padding:14px 26px;border-radius:999px;cursor:pointer;border:2px solid transparent;transition:transform .35s ease-in-out,box-shadow .35s ease-in-out,background .35s ease-in-out,color .35s ease-in-out;text-align:center;line-height:1.2}
     .bc-pp-btn:hover{transform:translateY(-2px) scale(1.02)}
-    .bc-pp-btn--gold{background:var(--bc-gold);color:#241a00;box-shadow:0 10px 22px rgba(242,169,12,.35)}
+    .bc-pp-btn--gold{background:var(--bc-gold);color:#fff;box-shadow:0 10px 22px rgba(238,93,135,.35)}
     .bc-pp-btn--gold:hover{background:var(--bc-gold-2)}
     .bc-pp-btn--outline{background:transparent;border-color:var(--bc-green);color:var(--bc-green)}
     .bc-pp-btn--outline:hover{background:var(--bc-green);color:#fff}
     .bc-pp-btn--green{background:var(--bc-green);color:#fff}
     .bc-pp-btn--green:hover{background:var(--bc-green-2)}
+    /* keep button text colours correct despite .bc-pp a{color:inherit} */
+    .bc-pp a.bc-pp-btn--gold,.bc-pp a.bc-pp-btn--green{color:#fff}
+    .bc-pp a.bc-pp-btn--outline{color:var(--bc-green)}
     .bc-pp-btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px}
 
     .bc-pp-badges{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:.85rem;color:var(--bc-grey)}
     .bc-pp-badges span{display:inline-flex;align-items:center;gap:.4em;font-weight:600}
-    .bc-pp-tick{color:var(--bc-gold-2)}
+    .bc-pp-tick{color:var(--olive)}
 
     /* hero */
     .bc-pp-hero{background:linear-gradient(180deg,var(--bc-cream),#fff);overflow:hidden}
@@ -83,14 +89,14 @@
     .bc-pp-spec dd{padding:14px 20px;margin:0;color:var(--bc-ink)}
 
     /* callout */
-    .bc-pp-callout{background:linear-gradient(135deg,var(--bc-gold),var(--bc-gold-2));border-radius:var(--bc-radius);box-shadow:var(--bc-shadow);padding:clamp(28px,4vw,48px);color:#241a00}
-    .bc-pp-callout h2{color:#241a00}
-    .bc-pp-callout p{color:#3a2c05;font-size:1.08rem;max-width:760px;margin:0}
+    .bc-pp-callout{background:linear-gradient(135deg,var(--bc-gold),var(--bc-gold-2));border-radius:var(--bc-radius);box-shadow:var(--bc-shadow);padding:clamp(28px,4vw,48px);color:#fff}
+    .bc-pp-callout h2{color:#fff}
+    .bc-pp-callout p{color:rgba(255,255,255,.92);font-size:1.08rem;max-width:760px;margin:0}
 
     /* final cta */
-    .bc-pp-final{background:linear-gradient(135deg,var(--bc-gold),var(--bc-gold-2));text-align:center;color:#241a00}
-    .bc-pp-final h2{color:#241a00}
-    .bc-pp-final p{color:#3a2c05;max-width:640px;margin:0 auto 24px;font-size:1.08rem}
+    .bc-pp-final{background:linear-gradient(135deg,var(--bc-green),var(--bc-green-2));text-align:center;color:#fff}
+    .bc-pp-final h2{color:#fff}
+    .bc-pp-final p{color:rgba(255,255,255,.9);max-width:640px;margin:0 auto 24px;font-size:1.08rem}
 
     /* reveal (once) */
     .bc-pp-reveal{opacity:0;transform:translateY(26px);transition:opacity .55s ease-in-out,transform .55s ease-in-out}
@@ -137,7 +143,7 @@
         </div>
         <div class="bc-pp-media bc-pp-reveal">
           <!-- REPLACE: drop your hero photo at /images/products/blueberries-hero.jpg -->
-          <img class="bc-pp-img" src="/images/products/blueberries-hero.jpg" data-ph="https://placehold.co/720x540/34508f/ffffff?text=Blueberries+%E2%80%94+hero" alt="Premium fresh Moroccan blueberries" loading="lazy">
+          <img class="bc-pp-img" src="/images/products/blueberries-hero.jpg" data-ph="https://placehold.co/720x540/1f2a5e/ffffff?text=Blueberries+%E2%80%94+hero" alt="Premium fresh Moroccan blueberries" loading="lazy">
         </div>
       </div>
     </div>
@@ -221,7 +227,7 @@
   <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-counterseason">
     <div class="bc-pp-wrap">
       <div class="bc-pp-callout bc-pp-reveal">
-        <span class="bc-pp-eyebrow" style="color:#3a2c05">Counter-seasonal advantage</span>
+        <span class="bc-pp-eyebrow" style="color:rgba(255,255,255,.85)">Counter-seasonal advantage</span>
         <h2>Available When You Need It Most</h2>
         <p>Morocco's blueberry season runs from late autumn through spring, filling the supply gap when European domestic production is at its lowest. Sourcing from Morocco gives buyers consistent, high-quality volumes during the off-season window — with shorter transit times to Europe than overseas origins.</p>
       </div>
@@ -252,7 +258,7 @@
         <h2>Request a Quote for Blueberries</h2>
         <p>Tell us your target volumes, packaging, and destination — we'll respond within 24 hours.</p>
         <div class="bc-pp-btn-row" style="justify-content:center;margin-bottom:0">
-          <a class="bc-pp-btn bc-pp-btn--green" data-wa data-wa-msg="Hello BerryCross, I'd like to request a quote for your Moroccan Blueberries. My target volumes / packaging / destination are:">Request a Quote</a>
+          <a class="bc-pp-btn bc-pp-btn--gold" data-wa data-wa-msg="Hello BerryCross, I'd like to request a quote for your Moroccan Blueberries. My target volumes / packaging / destination are:">Request a Quote</a>
         </div>
       </div>
     </div>

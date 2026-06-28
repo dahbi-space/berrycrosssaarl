@@ -7,19 +7,27 @@
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
 
     .bc-home{
-      --bc-green:#16432e;
-      --bc-green-2:#1e5a3e;
-      --bc-gold:#f2a90c;
-      --bc-gold-2:#d8950a;
-      --bc-cream:#f7f5ef;
-      --bc-ink:#1c1c1c;
-      --bc-grey:#5b5f5c;
+      /* ===== BRAND TOKENS — edit the whole palette here ===== */
+      --navy:#1f2a5e;      /* primary — blueberry navy (headings, dark sections, text) */
+      --navy-2:#2b3a78;    /* lighter navy for gradients / hovers */
+      --pink:#ee5d87;      /* accent — raspberry pink (CTAs, highlights) */
+      --pink-2:#d8456b;    /* deeper pink for accent text / hover */
+      --olive:#6b7a4f;     /* supporting accent — leaf olive */
+      --cream:#f7f5ef;     /* page background */
+      /* ----- design tokens mapped onto the brand palette (used across the site) ----- */
+      --bc-green:var(--navy);
+      --bc-green-2:var(--navy-2);
+      --bc-gold:var(--pink);
+      --bc-gold-2:var(--pink-2);
+      --bc-cream:var(--cream);
+      --bc-ink:#1c2236;
+      --bc-grey:#5b6070;
       --bc-line:#e6e3da;
-      --bc-rasp:#b3204e;
-      --bc-blue:#34508f;
+      --bc-rasp:var(--pink);
+      --bc-blue:var(--navy);
       --bc-radius:18px;
-      --bc-shadow:0 14px 40px rgba(22,67,46,.10);
-      --bc-shadow-sm:0 6px 18px rgba(22,67,46,.08);
+      --bc-shadow:0 14px 40px rgba(31,42,94,.12);
+      --bc-shadow-sm:0 6px 18px rgba(31,42,94,.09);
       --bc-max:1180px;
       font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
       color:var(--bc-ink);
@@ -67,7 +75,7 @@
       text-align:center;line-height:1.2;
     }
     .bc-btn:hover{transform:translateY(-2px) scale(1.02)}
-    .bc-btn--gold{background:var(--bc-gold);color:#241a00;box-shadow:0 10px 22px rgba(242,169,12,.35)}
+    .bc-btn--gold{background:var(--bc-gold);color:#fff;box-shadow:0 10px 22px rgba(238,93,135,.35)}
     .bc-btn--gold:hover{background:var(--bc-gold-2)}
     .bc-btn--outline{background:transparent;border-color:var(--bc-green);color:var(--bc-green)}
     .bc-btn--outline:hover{background:var(--bc-green);color:#fff}
@@ -75,6 +83,9 @@
     .bc-btn--ghost-light:hover{background:#fff;color:var(--bc-green)}
     .bc-btn--light{background:#fff;color:var(--bc-green)}
     .bc-btn--light:hover{background:var(--bc-cream)}
+    /* keep button text colours correct despite .bc-home a{color:inherit} */
+    .bc-home a.bc-btn--gold,.bc-home a.bc-btn--green{color:#fff}
+    .bc-home a.bc-btn--light{color:var(--bc-green)}
     .bc-btn--sm{padding:10px 18px;font-size:.9rem}
     .bc-btn--block{width:100%}
     .bc-btn-row{display:flex;flex-wrap:wrap;gap:14px}
@@ -112,7 +123,7 @@
     .bc-marquee-track{display:flex;width:max-content;align-items:center;animation:bc-marquee 36s linear infinite;will-change:transform}
     .bc-marquee:hover .bc-marquee-track{animation-play-state:paused}
     .bc-trustbar .bc-ti{display:inline-flex;align-items:center;gap:.45em;font-weight:600;font-size:.9rem;white-space:nowrap;padding:0 26px}
-    .bc-trustbar .bc-tick{color:var(--bc-gold);animation:bc-tick-pop 2.4s ease-in-out infinite}
+    .bc-trustbar .bc-tick{color:var(--olive);animation:bc-tick-pop 2.4s ease-in-out infinite}
     @keyframes bc-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
     @keyframes bc-tick-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
     @media(prefers-reduced-motion:reduce){
@@ -167,7 +178,7 @@
     .bc-map-svg{position:relative;width:100%;aspect-ratio:749/660;border-radius:var(--bc-radius);box-shadow:var(--bc-shadow);overflow:hidden;background:linear-gradient(160deg,#fbfaf5,var(--bc-cream))}
     .bc-map-svg svg{display:block;width:100%;height:100%}
     .bc-ocean{fill:transparent}
-    .bc-geo{fill:#e7e4da;stroke:#16432e;stroke-width:.6;stroke-linejoin:round;transition:fill .3s ease-in-out}
+    .bc-geo{fill:#e7e4da;stroke:var(--navy);stroke-width:.6;stroke-linejoin:round;transition:fill .3s ease-in-out}
     .bc-geo.bc-dest{fill:#d6e0d5}
     .bc-geo.bc-morocco{fill:var(--bc-green)}
     .bc-geo.bc-hot{fill:var(--bc-gold)}
@@ -199,7 +210,7 @@
     .bc-pill:nth-child(3n)::before{animation-delay:.8s}
     .bc-pill:nth-child(4n)::before{animation-delay:1.2s}
     .bc-pills .bc-pill:hover{transform:translateY(-3px) scale(1.04);box-shadow:var(--bc-shadow);border-color:var(--bc-gold)}
-    .bc-pills .bc-pill.bc-pill-hot{background:rgba(242,169,12,.16);border-color:var(--bc-gold);box-shadow:0 6px 18px rgba(242,169,12,.30)}
+    .bc-pills .bc-pill.bc-pill-hot{background:rgba(238,93,135,.16);border-color:var(--bc-gold);box-shadow:0 6px 18px rgba(238,93,135,.30)}
     @keyframes bc-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
     @media(prefers-reduced-motion:reduce){
       .bc-pill::before,.bc-dot-ring,.bc-origin-ring{animation:none}
@@ -209,7 +220,7 @@
     .bc-feat{display:flex;gap:16px;align-items:flex-start}
     .bc-feat .bc-ico{
       flex:none;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
-      background:rgba(242,169,12,.14);font-size:1.4rem;
+      background:rgba(238,93,135,.14);font-size:1.4rem;
     }
     .bc-feat h3{font-size:1.05rem;margin-bottom:.25em}
     .bc-feat p{font-size:.92rem}
@@ -226,8 +237,8 @@
     .bc-step::before{
       counter-increment:bcstep;content:counter(bcstep);
       position:absolute;top:-18px;left:20px;width:38px;height:38px;border-radius:50%;
-      background:var(--bc-gold);color:#241a00;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.05rem;
-      display:grid;place-items:center;box-shadow:0 0 0 6px rgba(242,169,12,.16),0 6px 16px rgba(242,169,12,.40);
+      background:var(--bc-gold);color:#fff;font-family:'Poppins',sans-serif;font-weight:700;font-size:1.05rem;
+      display:grid;place-items:center;box-shadow:0 0 0 6px rgba(238,93,135,.16),0 6px 16px rgba(238,93,135,.40);
       transform:scale(.35);opacity:0;transition:transform .45s ease-in-out,opacity .45s ease-in-out;transition-delay:inherit;
     }
     .bc-step.bc-in::before{transform:scale(1);opacity:1}
@@ -267,7 +278,7 @@
     .bc-check{display:flex;align-items:center;gap:.5em;font-weight:500;color:var(--bc-ink);font-size:.95rem}
     .bc-check input{width:auto}
     .bc-form-card{background:#fff;border:1px solid var(--bc-line);border-radius:var(--bc-radius);box-shadow:var(--bc-shadow);padding:clamp(24px,4vw,40px)}
-    .bc-reassure{display:inline-flex;align-items:center;gap:.5em;font-weight:600;color:var(--bc-green);background:rgba(22,67,46,.06);border-radius:999px;padding:8px 16px;font-size:.9rem}
+    .bc-reassure{display:inline-flex;align-items:center;gap:.5em;font-weight:600;color:var(--bc-green);background:rgba(31,42,94,.06);border-radius:999px;padding:8px 16px;font-size:.9rem}
 
     /* ---- FAQ ---- */
     .bc-faq{max-width:820px;margin:0 auto}
@@ -284,6 +295,7 @@
 
     /* ---- final CTA ---- */
     .bc-final{background:linear-gradient(135deg,var(--bc-green),var(--bc-green-2));color:#fff;text-align:center}
+    .bc-final h2{color:#fff}
     .bc-final p{color:rgba(255,255,255,.88);max-width:680px;margin:0 auto 26px;font-size:1.08rem}
 
     /* ---- floating buttons ---- */
@@ -304,15 +316,15 @@
     .bc-cal-header .bc-cal-monthsbar{background:var(--bc-green);border-radius:10px;overflow:hidden}
     .bc-cal-h{color:#fff;text-align:center;font-family:'Poppins',sans-serif;font-weight:600;font-size:.82rem;padding:12px 0;letter-spacing:.02em}
     .bc-cal-header{margin-bottom:6px}
-    .bc-cal-row:not(.bc-cal-header):nth-of-type(even){background:rgba(22,67,46,.035);border-radius:10px}
-    .bc-cal-row:not(.bc-cal-header):hover{background:rgba(242,169,12,.10)}
+    .bc-cal-row:not(.bc-cal-header):nth-of-type(even){background:rgba(31,42,94,.035);border-radius:10px}
+    .bc-cal-row:not(.bc-cal-header):hover{background:rgba(238,93,135,.10)}
     .bc-cal-cell{display:flex;align-items:center;justify-content:center;padding:12px 0 18px;cursor:default}
     .bc-cal-ico{width:30px;height:30px;color:#c6c3ba;transition:transform .4s ease-out,opacity .4s ease-out;transition-delay:var(--d,0ms)}
     .bc-cal-ico svg,.bc-cal-ico use{pointer-events:none}
-    .bc-cal-cell.is-on .bc-cal-ico{color:var(--bc-green);transform:scale(.5);opacity:0}
+    .bc-cal-cell.is-on .bc-cal-ico{color:var(--olive);transform:scale(.5);opacity:0}
     .bc-cal-go .bc-cal-cell.is-on .bc-cal-ico{transform:none;opacity:1}
     .bc-cal-bars{position:absolute;left:0;right:0;bottom:8px;height:7px;pointer-events:none}
-    .bc-cal-seg{position:absolute;bottom:0;height:7px;width:0;background:var(--bc-gold);border-radius:999px;box-shadow:0 2px 6px rgba(242,169,12,.35);transition:width .6s ease-in-out;transition-delay:var(--bd,0ms)}
+    .bc-cal-seg{position:absolute;bottom:0;height:7px;width:0;background:var(--bc-gold);border-radius:999px;box-shadow:0 2px 6px rgba(238,93,135,.35);transition:width .6s ease-in-out;transition-delay:var(--bd,0ms)}
     .bc-cal-go .bc-cal-seg{width:var(--w)}
     .bc-cal-legend{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;margin-top:22px}
     .bc-cal-leg{display:inline-flex;align-items:center;gap:.5em;font-size:.88rem;color:var(--bc-grey);font-weight:600}
@@ -380,7 +392,7 @@
         </div>
         <div class="bc-hero-media">
           <!-- REPLACE: hero — harvesting/packing shot of fresh berries, landscape -->
-          <img src="https://placehold.co/720x560/16432e/ffffff?text=HERO+%E2%80%94+Berry+harvest+%2F+packing+photo" alt="Workers harvesting and packing premium Moroccan berries on a BerryCross farm">
+          <img src="https://placehold.co/720x560/1f2a5e/ffffff?text=HERO+%E2%80%94+Berry+harvest+%2F+packing+photo" alt="Workers harvesting and packing premium Moroccan berries on a BerryCross farm">
           <span class="bc-hero-tag">🌱 Farm-to-export freshness</span>
         </div>
       </div>
@@ -587,7 +599,7 @@
           <div class="bc-map-svg" id="bc-map-svg" role="img" aria-label="Stylized map showing BerryCross export routes from Morocco to destination countries across Europe, the Middle East and beyond"></div>
           <noscript>
             <!-- REPLACE (optional): static export-map image shown only when JavaScript is disabled -->
-            <img src="https://placehold.co/640x440/f7f5ef/16432e?text=World+Map+%E2%80%94+Export+Destinations" alt="Stylized world map highlighting BerryCross export destinations across Europe and the Middle East">
+            <img src="https://placehold.co/640x440/f7f5ef/1f2a5e?text=World+Map+%E2%80%94+Export+Destinations" alt="Stylized world map highlighting BerryCross export destinations across Europe and the Middle East">
           </noscript>
         </div>
         <div>
