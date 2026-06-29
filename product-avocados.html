@@ -1,0 +1,480 @@
+<!--
+  INSTALL: Create a new WordPress page with the URL slug "products/avocados"
+  (so it lives at berry-cross.com/products/avocados — this is where the
+  Avocados "View Product" button on the homepage points).
+
+  Edit it with Elementor on a blank/Canvas template (no header/footer from
+  Elementor — your theme provides those) → add an HTML widget → paste
+  EVERYTHING below (the whole <div class="bc-pp">…</div> block) → Update.
+
+  WHAT TO EDIT:
+  1. CONFIG at the bottom of the <script> — update spec values, WhatsApp
+     number, email, and spec-sheet PDF URL. The spec table is generated from
+     CONFIG.specs so you only edit one place.
+  2. Images — place photos at the paths listed in each img comment.
+     The page shows a clean labelled placeholder until a real photo is found.
+     - /images/products/avocados-hero.jpg   (hero, ~4:3)
+     - /images/products/avocados-1.jpg       (overview gallery)
+     - /images/products/avocados-2.jpg
+     - /images/products/avocados-3.jpg
+     Fastest WordPress option: Media Library → upload → copy URL → paste into
+     the src attributes below.
+-->
+<div class="bc-pp" id="bc-pp-top">
+  <style>
+    /* ===== BerryCross — Avocados product page (scoped to .bc-pp) ===== */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+    .bc-pp{
+      /* ===== BRAND TOKENS — edit the whole palette here ===== */
+      --navy:#1f2a5e;--navy-2:#2b3a78;--pink:#ee5d87;--pink-2:#d8456b;--olive:#6b7a4f;--cream:#f7f5ef;
+      /* design tokens mapped onto the brand palette */
+      --bc-green:var(--navy);--bc-green-2:var(--navy-2);
+      --bc-gold:var(--pink);--bc-gold-2:var(--pink-2);
+      --bc-cream:var(--cream);--bc-ink:#1c2236;--bc-grey:#5b6070;--bc-line:#e6e3da;
+      --bc-radius:18px;
+      --bc-shadow:0 14px 40px rgba(31,42,94,.12);
+      --bc-shadow-sm:0 6px 18px rgba(31,42,94,.09);
+      --bc-max:1180px;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--bc-ink);line-height:1.65;background:#fff;font-size:16px;
+    }
+    .bc-pp *{box-sizing:border-box}
+    .bc-pp img{max-width:100%;display:block;height:auto}
+    .bc-pp h1,.bc-pp h2,.bc-pp h3,.bc-pp h4{
+      font-family:'Poppins',system-ui,sans-serif;color:var(--bc-green);
+      line-height:1.18;margin:0 0 .5em;font-weight:700}
+    .bc-pp h1{font-size:clamp(2rem,4.6vw,3.1rem);font-weight:800;letter-spacing:-.5px}
+    .bc-pp h2{font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-.4px}
+    .bc-pp h3{font-size:1.12rem}
+    .bc-pp p{margin:0 0 1rem}
+    .bc-pp a{color:inherit;text-decoration:none}
+
+    .bc-pp-wrap{max-width:var(--bc-max);margin:0 auto;padding:0 22px}
+    .bc-pp-section{padding:clamp(44px,6.5vw,84px) 0}
+    .bc-pp-section--cream{background:var(--bc-cream)}
+    .bc-pp-eyebrow{display:inline-block;font-family:'Poppins',sans-serif;font-weight:700;
+      letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;
+      color:var(--bc-gold-2);margin-bottom:.7rem}
+    .bc-pp-head{max-width:760px;margin:0 0 clamp(24px,3.5vw,40px)}
+    .bc-pp-lead{color:var(--bc-grey);font-size:1.05rem}
+
+    /* ---- buttons ---- */
+    .bc-pp-btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:.5em;
+      font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;
+      padding:14px 26px;border-radius:999px;cursor:pointer;border:2px solid transparent;
+      transition:transform .35s ease-in-out,box-shadow .35s ease-in-out,
+                 background .35s ease-in-out,color .35s ease-in-out;
+      text-align:center;line-height:1.2}
+    .bc-pp-btn:hover{transform:translateY(-2px) scale(1.02)}
+    .bc-pp-btn--gold{background:var(--bc-gold);color:#fff;box-shadow:0 10px 22px rgba(238,93,135,.35)}
+    .bc-pp-btn--gold:hover{background:var(--bc-gold-2)}
+    .bc-pp-btn--outline{background:transparent;border-color:var(--bc-green);color:var(--bc-green)}
+    .bc-pp-btn--outline:hover{background:var(--bc-green);color:#fff}
+    .bc-pp-btn--green{background:var(--bc-green);color:#fff}
+    .bc-pp-btn--green:hover{background:var(--bc-green-2)}
+    .bc-pp a.bc-pp-btn--gold,.bc-pp a.bc-pp-btn--green{color:#fff}
+    .bc-pp a.bc-pp-btn--outline{color:var(--bc-green)}
+    .bc-pp-btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+
+    /* ---- trust badges ---- */
+    .bc-pp-badges{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:.85rem;color:var(--bc-grey)}
+    .bc-pp-badges span{display:inline-flex;align-items:center;gap:.4em;font-weight:600}
+    .bc-pp-tick{color:var(--olive)}
+
+    /* ---- hero ---- */
+    .bc-pp-hero{background:linear-gradient(180deg,var(--bc-cream),#fff);overflow:hidden}
+    .bc-pp-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,56px);align-items:center}
+    .bc-pp-hero-sub{font-size:1.1rem;color:var(--bc-grey);max-width:560px;margin-bottom:24px}
+    .bc-pp-media{position:relative;overflow:hidden;border-radius:var(--bc-radius);box-shadow:var(--bc-shadow)}
+    .bc-pp-media img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s ease-in-out}
+    .bc-pp-media:hover img{transform:scale(1.06)}
+
+    /* ---- generic card grids ---- */
+    .bc-pp-grid{display:grid;gap:22px}
+    .bc-pp-g4{grid-template-columns:repeat(4,1fr)}
+    .bc-pp-g3{grid-template-columns:repeat(3,1fr)}
+    .bc-pp-card{
+      background:#fff;border:1px solid var(--bc-line);border-radius:var(--bc-radius);
+      box-shadow:var(--bc-shadow-sm);padding:24px;
+      transition:transform .35s ease-in-out,box-shadow .35s ease-in-out}
+    .bc-pp-card:hover{transform:translateY(-4px);box-shadow:var(--bc-shadow)}
+    .bc-pp-card h3{margin-bottom:.3em}
+    .bc-pp-card p{color:var(--bc-grey);font-size:.95rem;margin:0}
+    .bc-pp-card .bc-pp-ico{font-size:1.6rem;display:block;margin-bottom:.4em}
+
+    /* ---- gallery ---- */
+    .bc-pp-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .bc-pp-gallery figure{margin:0;overflow:hidden;border-radius:var(--bc-radius);box-shadow:var(--bc-shadow-sm)}
+    .bc-pp-gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s ease-in-out}
+    .bc-pp-gallery figure:hover img{transform:scale(1.07)}
+
+    /* ---- prose ---- */
+    .bc-pp-prose{max-width:820px}
+    .bc-pp-prose p{font-size:1.05rem;color:var(--bc-grey)}
+
+    /* ---- spec table ---- */
+    .bc-pp-specs{
+      background:#fff;border:1px solid var(--bc-line);border-radius:var(--bc-radius);
+      box-shadow:var(--bc-shadow-sm);overflow:hidden}
+    .bc-pp-spec{display:grid;grid-template-columns:240px 1fr;border-top:1px solid var(--bc-line)}
+    .bc-pp-spec:first-child{border-top:0}
+    .bc-pp-spec dt{
+      font-family:'Poppins',sans-serif;font-weight:600;color:var(--bc-green);
+      background:var(--bc-cream);padding:14px 20px;margin:0}
+    .bc-pp-spec dd{padding:14px 20px;margin:0;color:var(--bc-ink)}
+
+    /* ---- ripening callout (avocado-specific) ---- */
+    .bc-pp-ripening{
+      background:linear-gradient(135deg,#e8f0de,#d6e6c4);
+      border:1px solid #c0d8a0;border-radius:var(--bc-radius);
+      box-shadow:var(--bc-shadow-sm);padding:clamp(28px,4vw,48px)}
+    .bc-pp-ripening h2{color:var(--bc-green)}
+    .bc-pp-ripening p{color:var(--bc-grey);font-size:1.05rem;max-width:820px;margin:0}
+
+    /* ---- final CTA ---- */
+    .bc-pp-final{background:linear-gradient(135deg,var(--bc-green),var(--bc-green-2));text-align:center;color:#fff}
+    .bc-pp-final h2{color:#fff}
+    .bc-pp-final p{color:rgba(255,255,255,.9);max-width:640px;margin:0 auto 24px;font-size:1.08rem}
+
+    /* ---- scroll reveal (fires once, staggered per sibling group) ---- */
+    .bc-pp-reveal{
+      opacity:0;transform:translateY(26px);
+      transition:opacity .55s ease-in-out,transform .55s ease-in-out,box-shadow .35s ease-in-out}
+    .bc-pp-reveal.bc-pp-in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){
+      .bc-pp-reveal{opacity:1;transform:none;transition:none}}
+
+    /* ---- responsive ---- */
+    @media(max-width:980px){
+      .bc-pp-g4{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:820px){
+      .bc-pp-hero-grid{grid-template-columns:1fr}
+      .bc-pp-media{order:-1}
+      .bc-pp-g3,.bc-pp-gallery{grid-template-columns:1fr}
+      .bc-pp-spec{grid-template-columns:1fr}
+      .bc-pp-spec dt{padding-bottom:4px}
+      .bc-pp-spec dd{padding-top:4px}
+    }
+    @media(max-width:520px){
+      .bc-pp-g4{grid-template-columns:1fr}
+      .bc-pp-btn{width:100%}
+      .bc-pp-btn-row{flex-direction:column}
+    }
+  </style>
+
+  <!-- ============ 1) HERO ============ -->
+  <section class="bc-pp-section bc-pp-hero" id="bc-pp-hero">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-hero-grid">
+        <div class="bc-pp-reveal">
+          <span class="bc-pp-eyebrow">Premium Moroccan Produce</span>
+          <h1>Premium Moroccan Avocados</h1>
+          <p class="bc-pp-hero-sub">Hass and green-skin avocados grown in Morocco's ideal climate, calibrated and export-graded, and shipped cold-chain to buyers across Europe, Russia, and the Middle East.</p>
+          <div class="bc-pp-btn-row">
+            <a class="bc-pp-btn bc-pp-btn--gold"
+               data-wa
+               data-wa-msg="Hello BerryCross, I'd like to request a quote for your Moroccan Avocados. Please share pricing, calibre, packaging and availability."
+               href="#bc-pp-cta">Request a Quote</a>
+            <a class="bc-pp-btn bc-pp-btn--outline"
+               data-pdf="specSheet"
+               target="_blank" rel="noopener"
+               href="#REPLACE">Download Spec Sheet</a>
+          </div>
+          <div class="bc-pp-badges">
+            <span><span class="bc-pp-tick">✔</span> GlobalG.A.P. Certified</span>
+            <span><span class="bc-pp-tick">✔</span> GRASP Certified</span>
+            <span><span class="bc-pp-tick">✔</span> Cold Chain Logistics</span>
+            <span><span class="bc-pp-tick">✔</span> Private Label Available</span>
+          </div>
+        </div>
+        <div class="bc-pp-media bc-pp-reveal">
+          <!-- REPLACE: upload your hero photo and update this src -->
+          <!-- WordPress: Media Library → upload avocados-hero.jpg → copy URL → paste below -->
+          <img class="bc-pp-img"
+               src="/images/products/avocados-hero.jpg"
+               data-ph="https://placehold.co/720x540/2d5a1e/ffffff?text=Avocados+%E2%80%94+hero"
+               alt="Premium Moroccan avocados calibrated and ready for export"
+               loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2) OVERVIEW ============ -->
+  <section class="bc-pp-section" id="bc-pp-overview">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Overview</span>
+        <h2>Overview</h2>
+      </div>
+      <div class="bc-pp-prose bc-pp-reveal">
+        <p>Our avocados are grown across Morocco's prime production regions, where a mild climate and rich soils produce creamy, well-developed fruit with consistent calibre and excellent dry-matter content. Picked at the right maturity, calibrated, and export-graded, they reach buyers in firm, unbruised condition with strong shelf life — ready for premium retail, foodservice, and ripening programmes.</p>
+      </div>
+      <div class="bc-pp-gallery" style="margin-top:32px">
+        <!-- REPLACE: upload photos and update the src attributes below -->
+        <!-- WordPress: Media Library → upload → copy URL → paste into src -->
+        <figure class="bc-pp-reveal">
+          <img class="bc-pp-img"
+               src="/images/products/avocados-1.jpg"
+               data-ph="https://placehold.co/520x390/2d5a1e/ffffff?text=Avocados+1"
+               alt="Moroccan avocados developing on the tree" loading="lazy">
+        </figure>
+        <figure class="bc-pp-reveal">
+          <img class="bc-pp-img"
+               src="/images/products/avocados-2.jpg"
+               data-ph="https://placehold.co/520x390/3a6b24/ffffff?text=Avocados+2"
+               alt="Export-graded avocados being calibrated and packed" loading="lazy">
+        </figure>
+        <figure class="bc-pp-reveal">
+          <img class="bc-pp-img"
+               src="/images/products/avocados-3.jpg"
+               data-ph="https://placehold.co/520x390/1e4a14/ffffff?text=Avocados+3"
+               alt="Cartons of packed Moroccan avocados ready for shipment" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3) PRODUCT SPECIFICATIONS ============ -->
+  <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-specs-section">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Details</span>
+        <h2>Product Specifications</h2>
+        <p class="bc-pp-lead">Values marked [CONFIRM] are starting points — update them in the CONFIG block at the bottom of this widget's HTML.</p>
+      </div>
+      <!-- Spec rows are generated from CONFIG.specs in the <script> — edit there, not here -->
+      <dl class="bc-pp-specs bc-pp-reveal" id="bc-pp-specs"></dl>
+    </div>
+  </section>
+
+  <!-- ============ 4) PACKAGING OPTIONS ============ -->
+  <section class="bc-pp-section" id="bc-pp-packaging">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Packaging</span>
+        <h2>Packaging Options</h2>
+      </div>
+      <div class="bc-pp-grid bc-pp-g4">
+        <div class="bc-pp-card bc-pp-reveal">
+          <span class="bc-pp-ico">🥑</span>
+          <h3>4kg carton</h3>
+          <p>Retail-ready cartons for supermarket programmes.</p>
+        </div>
+        <div class="bc-pp-card bc-pp-reveal">
+          <span class="bc-pp-ico">🥑</span>
+          <h3>10kg carton</h3>
+          <p>Bulk cartons for wholesale and foodservice.</p>
+        </div>
+        <div class="bc-pp-card bc-pp-reveal">
+          <span class="bc-pp-ico">🚢</span>
+          <h3>Pallets</h3>
+          <p>Full-pallet volumes for container shipments.</p>
+        </div>
+        <div class="bc-pp-card bc-pp-reveal">
+          <span class="bc-pp-ico">🏷️</span>
+          <h3>Private Label</h3>
+          <p>Custom branding and packaging on request.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5) RIPENING & MATURITY (avocado-specific) ============ -->
+  <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-ripening">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-ripening bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Maturity &amp; ripening</span>
+        <h2>Picked at the Right Maturity</h2>
+        <p>Avocados don't ripen on the tree, so harvest timing and dry-matter content are critical. We pick at the correct maturity and can supply fruit firm (unripe) for your own ripening programme, giving you control over shelf-ready timing at destination.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6) QUALITY & CERTIFICATIONS ============ -->
+  <section class="bc-pp-section" id="bc-pp-quality">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Quality</span>
+        <h2>Quality You Can Trust</h2>
+      </div>
+      <div class="bc-pp-prose bc-pp-reveal">
+        <p>Every batch is grown under GlobalG.A.P. good agricultural practices and GRASP social-compliance standards, with full traceability from field to dispatch. Fruit is calibrated, inspected, and packed to export specification under strict quality control.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7) COLD CHAIN & LOGISTICS ============ -->
+  <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-coldchain">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Logistics</span>
+        <h2>Cold Chain &amp; Export Logistics</h2>
+      </div>
+      <div class="bc-pp-prose bc-pp-reveal">
+        <p>Avocados are pre-cooled after harvest and held in temperature-controlled conditions through grading, packing, and transit. We handle export-ready documentation and ship by sea or road in refrigerated containers, keeping the cold chain intact to your destination.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8) WHY SOURCE FROM US ============ -->
+  <section class="bc-pp-section" id="bc-pp-why">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">The BerryCross advantage</span>
+        <h2>Why Source From Us</h2>
+      </div>
+      <!-- 5 cards in a 3-column grid → wraps to 3+2 -->
+      <div class="bc-pp-grid bc-pp-g3">
+        <div class="bc-pp-card bc-pp-reveal">
+          <span class="bc-pp-ico">🌱</span>
+          <h3>Producer-to-Export Control</h3>
+          <p>We grow and ship, so quality is controlled end to end.</p>
+        </div>
+        <div class="bc-pp-card bc-pp-reveal">
+          <span class="bc-pp-ico">❄️</span>
+          <h3>Cold Chain Integrity</h3>
+          <p>Temperature-managed from harvest to your dock.</p>
+        </div>
+        <div class="bc-pp-card bc-pp-reveal">
+          <span class="bc-pp-ico">🏷️</span>
+          <h3>Flexible &amp; Private Label</h3>
+          <p>Custom packaging and your-brand options.</p>
+        </div>
+        <div class="bc-pp-card bc-pp-reveal">
+          <span class="bc-pp-ico">✅</span>
+          <h3>Certified &amp; Traceable</h3>
+          <p>GlobalG.A.P. and GRASP, fully traceable.</p>
+        </div>
+        <div class="bc-pp-card bc-pp-reveal">
+          <span class="bc-pp-ico">📦</span>
+          <h3>Reliable Volumes</h3>
+          <p>Consistent supply across the season.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9) FINAL CTA ============ -->
+  <section class="bc-pp-section bc-pp-final" id="bc-pp-cta">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-reveal">
+        <h2>Request a Quote for Avocados</h2>
+        <p>Tell us your target volumes, calibre, packaging, and destination — we'll respond within 24 hours.</p>
+        <div class="bc-pp-btn-row" style="justify-content:center;margin-bottom:0">
+          <a class="bc-pp-btn bc-pp-btn--gold"
+             data-wa
+             data-wa-msg="Hello BerryCross, I'd like to request a quote for your Moroccan Avocados. My target volumes / calibre / packaging / destination are:">Request a Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      /* =====================================================================
+         CONFIG — OWNER: edit these values.
+
+         - whatsapp  : international number, digits only (no +, spaces, dashes)
+         - email     : your sales/export inbox
+         - specSheet : replace "#REPLACE" with the uploaded Avocados spec-sheet
+                       PDF URL once you have it
+         - specs     : Product Specifications table rows.
+                       Edit the right-hand value of each pair — the table is
+                       built automatically from this array. Replace all [CONFIRM]
+                       notes with your confirmed figures.
+
+         NOTE on storage temp: avocados suffer chilling injury below ~5°C.
+         The spec row reflects this — do NOT change to 0–2°C.
+      ===================================================================== */
+      var CONFIG = {
+        whatsapp: "212623987845",
+        email: "contact@berry-cross.com",
+        specSheet: "#REPLACE",
+        specs: [
+          ["Origin",                   "Morocco (regions: Souss-Massa, Gharb, Loukkos — [CONFIRM])"],
+          ["Varieties",                "Hass, Fuerte, Zutano ([CONFIRM — list your actual varieties])"],
+          ["Calibre / count",          "16 · 18 · 20 · 22 · 24 · 26 (fruit per box) ([CONFIRM your available counts])"],
+          ["Dry matter / oil content", "23%+ dry matter at harvest ([CONFIRM])"],
+          ["Available packaging",      "4kg / 10kg cartons · pallets"],
+          ["Season",                   "September – April"],
+          ["Shelf life",               "2–4 weeks under proper cold chain, variety-dependent ([CONFIRM])"],
+          ["Storage / transport temp", "5–7°C (do NOT store below this — chilling injury risk) ([CONFIRM])"],
+          ["Certifications",           "GlobalG.A.P. · GRASP"]
+        ]
+      };
+
+      var root = document.querySelector('.bc-pp');
+      if(!root) return;
+
+      function waLink(msg){
+        return "https://wa.me/" + CONFIG.whatsapp
+               + "?text=" + encodeURIComponent(msg || "Hello BerryCross, I'd like to request a quote.");
+      }
+
+      root.querySelectorAll('[data-wa]').forEach(function(el){
+        el.addEventListener('click', function(e){
+          e.preventDefault();
+          window.open(waLink(el.getAttribute('data-wa-msg')), '_blank', 'noopener');
+        });
+      });
+
+      root.querySelectorAll('[data-pdf]').forEach(function(el){
+        var url = CONFIG[el.getAttribute('data-pdf')] || "#REPLACE";
+        el.setAttribute('href', url);
+        el.addEventListener('click', function(e){
+          if(!url || url === "#REPLACE"){
+            e.preventDefault();
+            alert("The spec-sheet PDF link hasn't been set yet — add it to CONFIG.specSheet in this widget's HTML.");
+          }
+        });
+      });
+
+      root.querySelectorAll('a[href^="#bc-pp-"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+          var t = root.querySelector(a.getAttribute('href'));
+          if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      });
+
+      var dl = root.querySelector('#bc-pp-specs');
+      if(dl){
+        var html = '';
+        CONFIG.specs.forEach(function(row){
+          html += '<div class="bc-pp-spec"><dt>' + esc(row[0]) + '</dt><dd>' + esc(row[1]) + '</dd></div>';
+        });
+        dl.innerHTML = html;
+      }
+      function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+      root.querySelectorAll('.bc-pp-img').forEach(function(img){
+        img.addEventListener('error', function(){
+          var ph = img.getAttribute('data-ph'), s = img.src;
+          if(ph && s.indexOf('placehold') === -1){ img.src = ph; } else { img.onerror = null; }
+        });
+      });
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var revealEls = Array.prototype.slice.call(root.querySelectorAll('.bc-pp-reveal'));
+      revealEls.forEach(function(el){
+        var sibs = Array.prototype.filter.call(el.parentNode.children, function(c){
+          return c.classList && c.classList.contains('bc-pp-reveal');
+        });
+        el.style.transitionDelay = (Math.min(sibs.indexOf(el), 8) * 70) + 'ms';
+      });
+      if(reduceMotion || !('IntersectionObserver' in window)){
+        revealEls.forEach(function(el){ el.classList.add('bc-pp-in'); });
+      } else {
+        var io = new IntersectionObserver(function(entries, obs){
+          entries.forEach(function(e){
+            if(e.isIntersecting){ e.target.classList.add('bc-pp-in'); obs.unobserve(e.target); }
+          });
+        }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+        revealEls.forEach(function(el){ io.observe(el); });
+      }
+    })();
+  </script>
+</div>
