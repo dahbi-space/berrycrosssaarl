@@ -375,6 +375,33 @@
       .bc-btn{width:100%}
       .bc-btn-row{flex-direction:column}
     }
+
+    /* ---- quote section ---- */
+    .bc-quote-wrap{max-width:720px;margin:0 auto;text-align:center}
+    .bc-quote-form-box{
+      background:#fff;border:1px solid var(--bc-line);border-radius:var(--bc-radius);
+      padding:clamp(28px,4vw,46px);box-shadow:var(--bc-shadow);
+      margin-top:28px;text-align:left}
+    .bc-quote-wa-line{margin-top:20px;text-align:center;font-size:.96rem;color:var(--bc-grey);margin-bottom:0}
+    .bc-quote-wa-line a{color:var(--bc-gold-2);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+    /* ---- site-header "Request a Quote" button (injected via JS below) ---- */
+    /* NOTE: these rules apply globally (not scoped to .bc-home) so they can style
+       an element injected into the WordPress theme's header nav outside this widget. */
+    .bc-hdr-cta{
+      display:inline-flex;align-items:center;justify-content:center;
+      font-family:'Poppins',sans-serif;font-weight:600;font-size:.87rem;
+      padding:9px 20px;border-radius:999px;
+      background:#ee5d87;color:#fff;border:none;cursor:pointer;
+      white-space:nowrap;text-decoration:none;
+      box-shadow:0 4px 14px rgba(238,93,135,.30);
+      transition:background .3s ease-in-out,transform .25s ease-in-out,box-shadow .3s ease-in-out;
+      margin-left:14px;flex-shrink:0;vertical-align:middle;line-height:1}
+    .bc-hdr-cta:hover,.bc-hdr-cta:focus{
+      background:#1f2a5e;color:#fff;
+      transform:translateY(-1px) scale(1.02);
+      box-shadow:0 6px 18px rgba(31,42,94,.22)}
+    @media(max-width:768px){.bc-hdr-cta{font-size:.8rem;padding:8px 16px;margin-left:8px}}
   </style>
 
   <!-- ============ 1) HERO ============ -->
@@ -386,7 +413,7 @@
           <h1>Premium Moroccan Berries &amp; Avocados for Global Buyers</h1>
           <p class="bc-hero-sub">BerryCross is a Moroccan producer and exporter of premium blueberries, raspberries, blackberries, strawberries, and avocados, supplying importers, wholesalers, retailers, food manufacturers, hotels, and restaurants across Europe, the Middle East, and beyond.</p>
           <div class="bc-btn-row">
-            <a class="bc-btn bc-btn--gold" data-wa data-wa-msg="Hello BerryCross, I'd like to request a quote for your Moroccan berries / avocados. Please share pricing, packaging and availability." href="#bc-quote">✅ Request a Quote</a>
+            <a class="bc-btn bc-btn--gold" href="#bc-quote">✅ Request a Quote</a>
             <a class="bc-btn bc-btn--outline" data-pdf="catalogue" target="_blank" rel="noopener" href="#REPLACE">📥 Download Product Catalogue</a>
           </div>
           <div class="bc-badges">
@@ -612,7 +639,7 @@
             <span class="bc-pill">United Kingdom</span><span class="bc-pill">Saudi Arabia</span><span class="bc-pill">UAE</span>
             <span class="bc-pill">Qatar</span><span class="bc-pill">Kuwait</span><span class="bc-pill">Russia</span>
           </div>
-          <a class="bc-btn bc-btn--gold" href="#bc-quote" data-wa data-wa-msg="Hello BerryCross, I'm looking for a supplier in my country. Please tell me about export to my market.">Looking for a supplier in your country? → Request a Quote</a>
+          <a class="bc-btn bc-btn--gold" href="#bc-quote">Looking for a supplier in your country? → Request a Quote</a>
         </div>
       </div>
     </div>
@@ -778,13 +805,44 @@
     </div>
   </section>
 
+  <!-- ============ 14b) QUOTE FORM ============ -->
+  <!--
+    INSTALL NOTE — shortcode rendering:
+    WordPress shortcodes do NOT render inside an Elementor HTML widget.
+    Recommended setup for this section:
+      Option A (Elementor layout): Create an Elementor Section with:
+        • HTML widget  → paste the heading / intro block
+        • Shortcode widget → paste [fluentform id="5"]
+        • HTML widget  → paste the WhatsApp fallback line
+      Option B (if you use a plugin like "Shortcode in Elementor HTML widget"):
+        Simply paste [fluentform id="5"] and it will render automatically.
+    The shortcode text below is included so you can copy it into the Shortcode widget.
+  -->
+  <section class="bc-section bc-section--cream" id="bc-quote">
+    <div class="bc-wrap">
+      <div class="bc-quote-wrap bc-reveal">
+        <span class="bc-eyebrow">Get Started</span>
+        <h2>Request a Personalized Quote</h2>
+        <p style="color:var(--bc-grey);font-size:1.06rem;max-width:580px;margin:0 auto">Tell us your target products, volumes, packaging, and destination — our team will respond within 24 hours.</p>
+        <div class="bc-quote-form-box">
+          <!--
+            REPLACE THIS COMMENT with the shortcode widget or rendered form output.
+            Shortcode to use in an Elementor Shortcode widget: [fluentform id="5"]
+          -->
+          [fluentform id="5"]
+        </div>
+        <p class="bc-quote-wa-line">Prefer a quick reply? <a href="#" id="bc-quote-wa-link">Chat with us on WhatsApp →</a></p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ 15) FINAL CTA ============ -->
   <section class="bc-section bc-final" id="bc-final">
     <div class="bc-wrap">
       <h2>Looking for a Reliable Moroccan Fresh Produce Partner?</h2>
       <p>Whether you're importing premium berries, sourcing avocados, or searching for a dependable long-term supplier, BerryCross delivers export-ready quality, flexible packaging and a cold chain you can count on — season after season.</p>
       <div class="bc-btn-row bc-btn-row--center">
-        <a class="bc-btn bc-btn--gold" href="#bc-quote" data-wa data-wa-msg="Hello BerryCross, I'd like to request a quote. Please share pricing, packaging and availability.">Request a Quote</a>
+        <a class="bc-btn bc-btn--gold" href="#bc-quote">Request a Quote</a>
         <a class="bc-btn bc-btn--light" data-wa data-wa-msg="Hello BerryCross, I'd like to talk to your sales / export team.">Contact Sales</a>
         <a class="bc-btn bc-btn--ghost-light" data-pdf="catalogue" target="_blank" rel="noopener" href="#REPLACE">Download Catalogue</a>
       </div>
@@ -827,6 +885,62 @@
       /* Floating WhatsApp button */
       var floatWa = root.querySelector('#bc-float-wa');
       if(floatWa){ floatWa.setAttribute('href', waLink("Hello BerryCross, I'd like to request a quote for your Moroccan berries / avocados.")); }
+
+      /* Quote section — WhatsApp fallback link */
+      var quoteWaLink = root.querySelector('#bc-quote-wa-link');
+      if(quoteWaLink){
+        var quoteWaMsg = "Hello BerryCross, I'd like to request a quote for your Moroccan berries / avocados. Please share pricing, packaging and availability.";
+        quoteWaLink.setAttribute('href', waLink(quoteWaMsg));
+        quoteWaLink.setAttribute('target', '_blank');
+        quoteWaLink.setAttribute('rel', 'noopener');
+      }
+
+      /* Header "Request a Quote" button — injected into the WordPress theme's nav.
+         SCOPE: this widget only loads on the homepage, so the button is injected
+         on the homepage. For it to appear on ALL pages (product pages etc.), add
+         the button directly inside your Elementor header template instead. */
+      (function(){
+        var isHome = (
+          document.body.classList.contains('home') ||
+          document.body.classList.contains('page-template-elementor_canvas') ||
+          window.location.pathname === '/' || window.location.pathname === ''
+        );
+        var btn = document.createElement('a');
+        btn.textContent = 'Request a Quote';
+        btn.className = 'bc-hdr-cta';
+        btn.setAttribute('href', isHome ? '#bc-quote' : '/#bc-quote');
+        if(isHome){
+          btn.addEventListener('click', function(e){
+            var target = document.querySelector('#bc-quote');
+            if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+          });
+        }
+        /* Try common Elementor / WordPress header selectors in priority order */
+        var selectors = [
+          '.elementor-nav-menu--main',
+          '.elementor-widget-nav-menu .elementor-widget-container',
+          '.elementor-widget-nav-menu',
+          '.elementor-location-header nav',
+          '#site-navigation',
+          '.site-header .main-navigation',
+          '.main-navigation',
+          '.header-navigation',
+          '.header-menu',
+          'header nav',
+          '.site-header'
+        ];
+        var container = null;
+        for(var s = 0; s < selectors.length; s++){
+          var c = document.querySelector(selectors[s]);
+          /* skip if inside this widget */
+          if(c && !root.contains(c)){ container = c; break; }
+        }
+        if(!container){
+          var hdr = document.querySelector('header');
+          if(hdr && !root.contains(hdr)){ container = hdr; }
+        }
+        if(container){ container.appendChild(btn); }
+      })();
 
       /* Generic WhatsApp CTAs (data-wa) */
       root.querySelectorAll('[data-wa]').forEach(function(el){
@@ -1006,7 +1120,7 @@
       }
 
       /* mark reveal targets and stagger them within their row */
-      var revealSel = '.bc-head, .bc-grid > *, .bc-chip, .bc-pack, .bc-step, .bc-pill, .bc-logo, .bc-acc, .bc-markets-grid > *';
+      var revealSel = '.bc-head, .bc-grid > *, .bc-chip, .bc-pack, .bc-step, .bc-pill, .bc-logo, .bc-acc, .bc-markets-grid > *, .bc-quote-wrap';
       var revealEls = Array.prototype.slice.call(root.querySelectorAll(revealSel));
       revealEls.forEach(function(el){
         el.classList.add('bc-reveal');
