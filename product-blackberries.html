@@ -160,6 +160,52 @@
       .bc-pp-btn{width:100%}
       .bc-pp-btn-row{flex-direction:column}
     }
+
+    /* === amber CTA, season calendar, FAQ, mobile sticky === */
+    .bc-pp-btn--amber{background:#E0A52E;color:#fff;box-shadow:0 10px 22px rgba(224,165,46,.32)}
+    .bc-pp a.bc-pp-btn--amber{color:#fff}
+    .bc-pp-btn--amber:hover{background:#2B3A67;box-shadow:0 10px 22px rgba(43,58,103,.28)}
+    .bc-pp-mid-cta{text-align:center;padding:clamp(18px,2.5vw,32px) 0 0}
+    .bc-pp-mid-cta p{color:var(--bc-grey);font-size:.96rem;margin-bottom:14px}
+    .bc-pp-season-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;margin-bottom:12px}
+    .bc-pp-season-mo{border-radius:6px;padding:10px 3px 8px;text-align:center;
+      font-family:'Poppins',sans-serif;font-size:.66rem;font-weight:600;
+      background:var(--bc-line);color:var(--bc-grey);letter-spacing:.02em;text-transform:uppercase}
+    .bc-pp-season-mo.on{background:#E0A52E;color:#fff}
+    .bc-pp-season-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.8rem;color:var(--bc-grey);margin-top:4px}
+    .bc-pp-season-legend-item{display:flex;align-items:center;gap:7px}
+    .bc-pp-season-legend-dot{width:13px;height:13px;border-radius:3px;flex-shrink:0}
+    .bc-pp-season-note{margin-top:14px;font-size:.94rem;color:var(--bc-grey);max-width:640px;line-height:1.6}
+    @media(max-width:640px){.bc-pp-season-grid{grid-template-columns:repeat(6,1fr)}}
+    .bc-pp-faq-list{max-width:820px}
+    .bc-pp-faq-item{border-bottom:1px solid var(--bc-line)}
+    .bc-pp-faq-item:first-child{border-top:1px solid var(--bc-line)}
+    .bc-pp-faq-q{
+      width:100%;background:transparent;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:18px 0;text-align:left;
+      font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;
+      color:var(--bc-green);line-height:1.3;transition:color .2s}
+    .bc-pp-faq-q:hover,.bc-pp-faq-q[aria-expanded="true"]{color:var(--bc-gold)}
+    .bc-pp-faq-icon{
+      width:26px;height:26px;border-radius:50%;border:2px solid currentColor;
+      display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+      font-size:.92rem;font-style:normal;transition:transform .28s ease}
+    .bc-pp-faq-q[aria-expanded="true"] .bc-pp-faq-icon{transform:rotate(45deg)}
+    .bc-pp-faq-a{max-height:0;overflow:hidden;transition:max-height .38s ease-in-out}
+    .bc-pp-faq-a.bc-pp-faq-open{max-height:500px}
+    .bc-pp-faq-a-inner{padding:2px 0 20px;color:var(--bc-grey);font-size:.97rem;line-height:1.65}
+    .bc-pp-sticky{
+      display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;
+      padding:10px 16px 12px;background:#fff;
+      box-shadow:0 -2px 16px rgba(31,42,94,.12);border-top:1px solid var(--bc-line)}
+    .bc-pp-sticky a{
+      display:block;text-align:center;
+      background:#E0A52E;color:#fff !important;
+      font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem;
+      padding:13px 20px;border-radius:999px;text-decoration:none}
+    .bc-pp-sticky a:hover,.bc-pp-sticky a:active{background:#2B3A67}
+    @media(max-width:640px){.bc-pp-sticky{display:block}}
   </style>
 
   <!-- ============ 1) HERO ============ -->
@@ -171,10 +217,7 @@
           <h1>Premium Moroccan Blackberries</h1>
           <p class="bc-pp-hero-sub">Glossy, full-flavoured blackberries grown in Morocco's ideal climate, hand-selected for consistent calibre, and shipped cold-chain to buyers across Europe, Russia, and the Middle East.</p>
           <div class="bc-pp-btn-row">
-            <a class="bc-pp-btn bc-pp-btn--gold"
-               data-wa
-               data-wa-msg="Hello BerryCross, I'd like to request a quote for your Moroccan Blackberries. Please share pricing, packaging and availability."
-               href="#bc-pp-cta">Request a Quote</a>
+            <a class="bc-pp-btn bc-pp-btn--amber" href="#bc-pp-cta">Request a Quote</a>
             <a class="bc-pp-btn bc-pp-btn--outline"
                data-pdf="specSheet"
                target="_blank" rel="noopener"
@@ -275,7 +318,44 @@
     </div>
   </section>
 
-  <!-- ============ 5) QUALITY & CERTIFICATIONS ============ -->
+  <!-- mid-page CTA — visible after buyer has seen specs & packaging -->
+  <div class="bc-pp-wrap bc-pp-mid-cta">
+    <p>Ready to discuss your blackberry supply requirements?</p>
+    <a class="bc-pp-btn bc-pp-btn--amber bc-pp-reveal" href="#bc-pp-cta">Request a Quote</a>
+  </div>
+
+  <!-- ============ 5) HARVEST SEASON ============ -->
+  <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-season">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Availability</span>
+        <h2>Harvest Season &amp; Availability</h2>
+      </div>
+      <div class="bc-pp-reveal">
+        <div class="bc-pp-season-grid" role="img" aria-label="Blackberry harvest season: November through June">
+          <div class="bc-pp-season-mo on">Jan</div>
+          <div class="bc-pp-season-mo on">Feb</div>
+          <div class="bc-pp-season-mo on">Mar</div>
+          <div class="bc-pp-season-mo on">Apr</div>
+          <div class="bc-pp-season-mo on">May</div>
+          <div class="bc-pp-season-mo on">Jun</div>
+          <div class="bc-pp-season-mo">Jul</div>
+          <div class="bc-pp-season-mo">Aug</div>
+          <div class="bc-pp-season-mo">Sep</div>
+          <div class="bc-pp-season-mo">Oct</div>
+          <div class="bc-pp-season-mo on">Nov</div>
+          <div class="bc-pp-season-mo on">Dec</div>
+        </div>
+        <div class="bc-pp-season-legend">
+          <span class="bc-pp-season-legend-item"><span class="bc-pp-season-legend-dot" style="background:#E0A52E"></span>In season</span>
+          <span class="bc-pp-season-legend-item"><span class="bc-pp-season-legend-dot" style="background:var(--bc-line)"></span>Off season</span>
+        </div>
+        <p class="bc-pp-season-note">Moroccan blackberries are available from <strong>November through June</strong>, covering the full European off-season and providing buyers with a reliable bridge supply when domestic production is unavailable. Contact us for current crop availability and forward-planning.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6) QUALITY & CERTIFICATIONS ============ -->
   <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-quality">
     <div class="bc-pp-wrap">
       <div class="bc-pp-head bc-pp-reveal">
@@ -345,6 +425,42 @@
           <span class="bc-pp-ico">📦</span>
           <h3>Reliable Volumes</h3>
           <p>Consistent supply across the season.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8) FAQ ============ -->
+  <section class="bc-pp-section" id="bc-pp-faq">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Buyer FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="bc-pp-faq-list bc-pp-reveal">
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bk-1" id="faq-bk-q1">What is the minimum order quantity (MOQ) for blackberries?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bk-1" role="region" aria-labelledby="faq-bk-q1"><div class="bc-pp-faq-a-inner">Our minimum order quantity for fresh Moroccan blackberries is [CONFIRM: e.g. 1 pallet / X kg]. For trial orders, please contact us — we assess feasibility based on current availability and your destination market.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bk-2" id="faq-bk-q2">What packaging formats do you offer for blackberries?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bk-2" role="region" aria-labelledby="faq-bk-q2"><div class="bc-pp-faq-a-inner">We supply blackberries in 125g and 250g clamshell punnets for retail, and in bulk formats for processing, repacking, or foodservice. Private label and custom packaging are available on request for established buyers.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bk-3" id="faq-bk-q3">Are your blackberries GlobalG.A.P. certified?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bk-3" role="region" aria-labelledby="faq-bk-q3"><div class="bc-pp-faq-a-inner">Yes. All our blackberries are grown under GlobalG.A.P. good agricultural practices and GRASP social-compliance certification, with full traceability from farm to dispatch. Certification documents are available on request.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bk-4" id="faq-bk-q4">What shipping options are available for blackberries?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bk-4" role="region" aria-labelledby="faq-bk-q4"><div class="bc-pp-faq-a-inner">We ship by road and air freight depending on destination and volume. Blackberries are delicate so we prioritise fast, temperature-controlled transit — typically [CONFIRM: e.g. 2–5 days by road to Southern Europe]. The full cold chain (0–2°C) is maintained from harvest to delivery.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bk-5" id="faq-bk-q5">Can you supply private label packaging?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bk-5" role="region" aria-labelledby="faq-bk-q5"><div class="bc-pp-faq-a-inner">Yes. We offer private label packaging for established buyers ordering at sufficient volumes. Include your branding requirements in your quote request and we will provide a packaging proposal alongside pricing.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bk-6" id="faq-bk-q6">How quickly will I receive a response to my quote request?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bk-6" role="region" aria-labelledby="faq-bk-q6"><div class="bc-pp-faq-a-inner">We aim to respond to all quote requests within 24 hours on business days. For urgent enquiries, you can also contact us directly via WhatsApp for a faster reply.</div></div>
         </div>
       </div>
     </div>
@@ -425,6 +541,36 @@
         });
       });
 
+      /* FAQ accordion */
+      var faqItems = Array.prototype.slice.call(root.querySelectorAll('.bc-pp-faq-item'));
+      faqItems.forEach(function(item){
+        var q = item.querySelector('.bc-pp-faq-q');
+        var a = item.querySelector('.bc-pp-faq-a');
+        if(!q || !a) return;
+        q.addEventListener('click', function(){
+          var isOpen = q.getAttribute('aria-expanded') === 'true';
+          faqItems.forEach(function(fi){
+            var fq = fi.querySelector('.bc-pp-faq-q');
+            var fa = fi.querySelector('.bc-pp-faq-a');
+            if(fq) fq.setAttribute('aria-expanded','false');
+            if(fa) fa.classList.remove('bc-pp-faq-open');
+          });
+          if(!isOpen){
+            q.setAttribute('aria-expanded','true');
+            a.classList.add('bc-pp-faq-open');
+          }
+        });
+      });
+
+      /* Hide sticky bar when final CTA is visible */
+      var stickyBar = root.querySelector('.bc-pp-sticky');
+      var ctaSection = root.querySelector('#bc-pp-cta');
+      if(stickyBar && ctaSection && 'IntersectionObserver' in window){
+        new IntersectionObserver(function(entries){
+          stickyBar.style.display = entries[0].isIntersecting ? 'none' : '';
+        },{threshold:0.1}).observe(ctaSection);
+      }
+
       /* Smooth scroll for in-page anchor links */
       root.querySelectorAll('a[href^="#bc-pp-"]').forEach(function(a){
         a.addEventListener('click', function(e){
@@ -473,4 +619,9 @@
       }
     })();
   </script>
+
+  <!-- mobile sticky CTA bar -->
+  <div class="bc-pp-sticky" aria-label="Request a quote for blackberries">
+    <a href="#bc-pp-cta">Request a Quote for Blackberries</a>
+  </div>
 </div>
