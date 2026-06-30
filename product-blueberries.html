@@ -1,0 +1,516 @@
+<!--
+  INSTALL: Create a new WordPress page with the URL slug "products/blueberries" (so it lives at berry-cross.com/products/blueberries — this is where the Blueberries "View Product" button points). Edit it with Elementor on a blank/Canvas template → add an "HTML" widget → paste EVERYTHING below (the whole <div class="bc-pp">…</div> block) → Update.
+  Then edit the CONFIG object at the top of the <script> (WhatsApp, email, spec-sheet PDF, and the spec values), and drop your photos at the paths noted on each image.
+-->
+<div class="bc-pp" id="bc-pp-top">
+  <style>
+    /* ===== BerryCross — Blueberries product page (scoped) ===== */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+    .bc-pp{
+      /* ===== BRAND TOKENS — edit the whole palette here ===== */
+      --navy:#1f2a5e;--navy-2:#2b3a78;--pink:#ee5d87;--pink-2:#d8456b;--olive:#6b7a4f;--cream:#f7f5ef;
+      /* design tokens mapped onto the brand palette */
+      --bc-green:var(--navy);--bc-green-2:var(--navy-2);--bc-gold:var(--pink);--bc-gold-2:var(--pink-2);
+      --bc-cream:var(--cream);--bc-ink:#1c2236;--bc-grey:#5b6070;--bc-line:#e6e3da;--bc-blue:var(--navy);
+      --bc-radius:18px;--bc-shadow:0 14px 40px rgba(31,42,94,.12);--bc-shadow-sm:0 6px 18px rgba(31,42,94,.09);
+      --bc-max:1180px;
+      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--bc-ink);line-height:1.65;background:#fff;font-size:16px;
+    }
+    .bc-pp *{box-sizing:border-box}
+    .bc-pp img{max-width:100%;display:block;height:auto}
+    .bc-pp h1,.bc-pp h2,.bc-pp h3,.bc-pp h4{font-family:'Poppins',system-ui,sans-serif;color:var(--bc-green);line-height:1.18;margin:0 0 .5em;font-weight:700}
+    .bc-pp h1{font-size:clamp(2rem,4.6vw,3.1rem);font-weight:800;letter-spacing:-.5px}
+    .bc-pp h2{font-size:clamp(1.5rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-.4px}
+    .bc-pp h3{font-size:1.12rem}
+    .bc-pp p{margin:0 0 1rem}
+    .bc-pp a{color:inherit;text-decoration:none}
+
+    .bc-pp-wrap{max-width:var(--bc-max);margin:0 auto;padding:0 22px}
+    .bc-pp-section{padding:clamp(44px,6.5vw,84px) 0}
+    .bc-pp-section--cream{background:var(--bc-cream)}
+    .bc-pp-eyebrow{display:inline-block;font-family:'Poppins',sans-serif;font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:var(--bc-gold-2);margin-bottom:.7rem}
+    .bc-pp-head{max-width:760px;margin:0 0 clamp(24px,3.5vw,40px)}
+    .bc-pp-head--center{margin-left:auto;margin-right:auto;text-align:center}
+    .bc-pp-lead{color:var(--bc-grey);font-size:1.05rem}
+
+    /* buttons */
+    .bc-pp-btn{display:inline-flex;align-items:center;justify-content:center;gap:.5em;font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;padding:14px 26px;border-radius:999px;cursor:pointer;border:2px solid transparent;transition:transform .35s ease-in-out,box-shadow .35s ease-in-out,background .35s ease-in-out,color .35s ease-in-out;text-align:center;line-height:1.2}
+    .bc-pp-btn:hover{transform:translateY(-2px) scale(1.02)}
+    .bc-pp-btn--gold{background:var(--bc-gold);color:#fff;box-shadow:0 10px 22px rgba(238,93,135,.35)}
+    .bc-pp-btn--gold:hover{background:var(--bc-gold-2)}
+    .bc-pp-btn--outline{background:transparent;border-color:var(--bc-green);color:var(--bc-green)}
+    .bc-pp-btn--outline:hover{background:var(--bc-green);color:#fff}
+    .bc-pp-btn--green{background:var(--bc-green);color:#fff}
+    .bc-pp-btn--green:hover{background:var(--bc-green-2)}
+    /* keep button text colours correct despite .bc-pp a{color:inherit} */
+    .bc-pp a.bc-pp-btn--gold,.bc-pp a.bc-pp-btn--green{color:#fff}
+    .bc-pp a.bc-pp-btn--outline{color:var(--bc-green)}
+    .bc-pp-btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+
+    .bc-pp-badges{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:.85rem;color:var(--bc-grey)}
+    .bc-pp-badges span{display:inline-flex;align-items:center;gap:.4em;font-weight:600}
+    .bc-pp-tick{color:var(--olive)}
+
+    /* hero */
+    .bc-pp-hero{background:linear-gradient(180deg,var(--bc-cream),#fff);overflow:hidden}
+    .bc-pp-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,5vw,56px);align-items:center}
+    .bc-pp-hero-sub{font-size:1.1rem;color:var(--bc-grey);max-width:560px;margin-bottom:24px}
+    .bc-pp-media{position:relative;overflow:hidden;border-radius:var(--bc-radius);box-shadow:var(--bc-shadow)}
+    .bc-pp-media img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s ease-in-out}
+    .bc-pp-media:hover img{transform:scale(1.06)}
+
+    /* generic cards/grids */
+    .bc-pp-grid{display:grid;gap:22px}
+    .bc-pp-g4{grid-template-columns:repeat(4,1fr)}
+    .bc-pp-g3{grid-template-columns:repeat(3,1fr)}
+    .bc-pp-card{background:#fff;border:1px solid var(--bc-line);border-radius:var(--bc-radius);box-shadow:var(--bc-shadow-sm);padding:24px;transition:transform .35s ease-in-out,box-shadow .35s ease-in-out}
+    .bc-pp-card:hover{transform:translateY(-4px);box-shadow:var(--bc-shadow)}
+    .bc-pp-card h3{margin-bottom:.3em}
+    .bc-pp-card p{color:var(--bc-grey);font-size:.95rem;margin:0}
+    .bc-pp-card .bc-pp-ico{font-size:1.6rem;display:block;margin-bottom:.4em}
+
+    /* gallery */
+    .bc-pp-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .bc-pp-gallery figure{margin:0;overflow:hidden;border-radius:var(--bc-radius);box-shadow:var(--bc-shadow-sm)}
+    .bc-pp-gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .5s ease-in-out}
+    .bc-pp-gallery figure:hover img{transform:scale(1.07)}
+
+    /* two-column text */
+    .bc-pp-prose{max-width:820px}
+    .bc-pp-prose p{font-size:1.05rem;color:var(--bc-grey)}
+
+    /* spec table */
+    .bc-pp-specs{background:#fff;border:1px solid var(--bc-line);border-radius:var(--bc-radius);box-shadow:var(--bc-shadow-sm);overflow:hidden}
+    .bc-pp-spec{display:grid;grid-template-columns:240px 1fr;gap:0;border-top:1px solid var(--bc-line)}
+    .bc-pp-spec:first-child{border-top:0}
+    .bc-pp-spec dt{font-family:'Poppins',sans-serif;font-weight:600;color:var(--bc-green);background:var(--bc-cream);padding:14px 20px;margin:0}
+    .bc-pp-spec dd{padding:14px 20px;margin:0;color:var(--bc-ink)}
+
+    /* callout */
+    .bc-pp-callout{background:linear-gradient(135deg,var(--bc-gold),var(--bc-gold-2));border-radius:var(--bc-radius);box-shadow:var(--bc-shadow);padding:clamp(28px,4vw,48px);color:#fff}
+    .bc-pp-callout h2{color:#fff}
+    .bc-pp-callout p{color:rgba(255,255,255,.92);font-size:1.08rem;max-width:760px;margin:0}
+
+    /* final cta */
+    .bc-pp-final{background:linear-gradient(135deg,var(--bc-green),var(--bc-green-2));text-align:center;color:#fff}
+    .bc-pp-final h2{color:#fff}
+    .bc-pp-final p{color:rgba(255,255,255,.9);max-width:640px;margin:0 auto 24px;font-size:1.08rem}
+
+    /* reveal (once) */
+    .bc-pp-reveal{opacity:0;transform:translateY(26px);transition:opacity .55s ease-in-out,transform .55s ease-in-out,box-shadow .35s ease-in-out}
+    .bc-pp-reveal.bc-pp-in{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){.bc-pp-reveal{opacity:1;transform:none;transition:none}}
+
+    /* responsive */
+    @media(max-width:980px){
+      .bc-pp-g4{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:820px){
+      .bc-pp-hero-grid{grid-template-columns:1fr}
+      .bc-pp-media{order:-1}
+      .bc-pp-g3,.bc-pp-gallery{grid-template-columns:1fr}
+      .bc-pp-spec{grid-template-columns:1fr}
+      .bc-pp-spec dt{padding-bottom:4px}
+      .bc-pp-spec dd{padding-top:4px}
+    }
+    @media(max-width:520px){
+      .bc-pp-g4{grid-template-columns:1fr}
+      .bc-pp-btn{width:100%}
+      .bc-pp-btn-row{flex-direction:column}
+    }
+
+    /* === amber CTA, season calendar, FAQ, mobile sticky === */
+    .bc-pp-btn--amber{background:#E0A52E;color:#fff;box-shadow:0 10px 22px rgba(224,165,46,.32)}
+    .bc-pp a.bc-pp-btn--amber{color:#fff}
+    .bc-pp-btn--amber:hover{background:#2B3A67;box-shadow:0 10px 22px rgba(43,58,103,.28)}
+    /* mid-page CTA strip */
+    .bc-pp-mid-cta{text-align:center;padding:clamp(18px,2.5vw,32px) 0 0}
+    .bc-pp-mid-cta p{color:var(--bc-grey);font-size:.96rem;margin-bottom:14px}
+    /* harvest season calendar */
+    .bc-pp-season-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:5px;margin-bottom:12px}
+    .bc-pp-season-mo{border-radius:6px;padding:10px 3px 8px;text-align:center;
+      font-family:'Poppins',sans-serif;font-size:.66rem;font-weight:600;
+      background:var(--bc-line);color:var(--bc-grey);letter-spacing:.02em;text-transform:uppercase}
+    .bc-pp-season-mo.on{background:#E0A52E;color:#fff}
+    .bc-pp-season-legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.8rem;color:var(--bc-grey);margin-top:4px}
+    .bc-pp-season-legend-item{display:flex;align-items:center;gap:7px}
+    .bc-pp-season-legend-dot{width:13px;height:13px;border-radius:3px;flex-shrink:0}
+    .bc-pp-season-note{margin-top:14px;font-size:.94rem;color:var(--bc-grey);max-width:640px;line-height:1.6}
+    @media(max-width:640px){.bc-pp-season-grid{grid-template-columns:repeat(6,1fr)}}
+    /* FAQ accordion */
+    .bc-pp-faq-list{max-width:820px}
+    .bc-pp-faq-item{border-bottom:1px solid var(--bc-line)}
+    .bc-pp-faq-item:first-child{border-top:1px solid var(--bc-line)}
+    .bc-pp-faq-q{
+      width:100%;background:transparent;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+      padding:18px 0;text-align:left;
+      font-family:'Poppins',sans-serif;font-weight:600;font-size:1rem;
+      color:var(--bc-green);line-height:1.3;transition:color .2s}
+    .bc-pp-faq-q:hover,.bc-pp-faq-q[aria-expanded="true"]{color:var(--bc-gold)}
+    .bc-pp-faq-icon{
+      width:26px;height:26px;border-radius:50%;border:2px solid currentColor;
+      display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
+      font-size:.92rem;font-style:normal;transition:transform .28s ease}
+    .bc-pp-faq-q[aria-expanded="true"] .bc-pp-faq-icon{transform:rotate(45deg)}
+    .bc-pp-faq-a{max-height:0;overflow:hidden;transition:max-height .38s ease-in-out}
+    .bc-pp-faq-a.bc-pp-faq-open{max-height:500px}
+    .bc-pp-faq-a-inner{padding:2px 0 20px;color:var(--bc-grey);font-size:.97rem;line-height:1.65}
+    /* mobile sticky bar */
+    .bc-pp-sticky{
+      display:none;position:fixed;bottom:0;left:0;right:0;z-index:9998;
+      padding:10px 16px 12px;background:#fff;
+      box-shadow:0 -2px 16px rgba(31,42,94,.12);border-top:1px solid var(--bc-line)}
+    .bc-pp-sticky a{
+      display:block;text-align:center;
+      background:#E0A52E;color:#fff !important;
+      font-family:'Poppins',sans-serif;font-weight:700;font-size:.95rem;
+      padding:13px 20px;border-radius:999px;text-decoration:none}
+    .bc-pp-sticky a:hover,.bc-pp-sticky a:active{background:#2B3A67}
+    @media(max-width:640px){.bc-pp-sticky{display:block}}
+  </style>
+
+  <!-- ============ 1) HERO ============ -->
+  <section class="bc-pp-section bc-pp-hero" id="bc-pp-hero">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-hero-grid">
+        <div class="bc-pp-reveal">
+          <span class="bc-pp-eyebrow">Premium Moroccan Produce</span>
+          <h1>Premium Moroccan Blueberries</h1>
+          <p class="bc-pp-hero-sub">Firm, sweet, large-calibre blueberries grown in Morocco's ideal climate, hand-selected at peak ripeness, and shipped cold-chain to buyers across Europe, Russia, and the Middle East.</p>
+          <div class="bc-pp-btn-row">
+            <a class="bc-pp-btn bc-pp-btn--amber" href="#bc-pp-cta">Request a Quote</a>
+            <a class="bc-pp-btn bc-pp-btn--outline" data-pdf="specSheet" target="_blank" rel="noopener" href="#REPLACE">Download Spec Sheet</a>
+          </div>
+          <div class="bc-pp-badges">
+            <span><span class="bc-pp-tick">✔</span> GlobalG.A.P. Certified</span>
+            <span><span class="bc-pp-tick">✔</span> GRASP Certified</span>
+            <span><span class="bc-pp-tick">✔</span> Cold Chain Logistics</span>
+            <span><span class="bc-pp-tick">✔</span> Private Label Available</span>
+          </div>
+        </div>
+        <div class="bc-pp-media bc-pp-reveal">
+          <!-- REPLACE: drop your hero photo at /images/products/blueberries-hero.jpg -->
+          <img class="bc-pp-img" src="/images/products/blueberries-hero.jpg" data-ph="https://placehold.co/720x540/1f2a5e/ffffff?text=Blueberries+%E2%80%94+hero" alt="Premium fresh Moroccan blueberries" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2) OVERVIEW ============ -->
+  <section class="bc-pp-section" id="bc-pp-overview">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Overview</span>
+        <h2>Overview</h2>
+      </div>
+      <div class="bc-pp-prose bc-pp-reveal">
+        <p>Our blueberries are grown across Morocco's prime production regions, where mild winters and long, sunny days yield firm, uniformly sized fruit with an excellent sugar-to-acid balance. Harvested at peak ripeness, hand-selected, and immediately cooled, they reach buyers with strong bloom, deep colour, and excellent shelf life — ready for premium retail, foodservice, and processing channels.</p>
+      </div>
+      <div class="bc-pp-gallery" style="margin-top:32px">
+        <!-- REPLACE: drop your photos at /images/products/blueberries-1.jpg, -2.jpg, -3.jpg -->
+        <figure class="bc-pp-reveal"><img class="bc-pp-img" src="/images/products/blueberries-1.jpg" data-ph="https://placehold.co/520x390/34508f/ffffff?text=Blueberries+1" alt="Moroccan blueberries in the field" loading="lazy"></figure>
+        <figure class="bc-pp-reveal"><img class="bc-pp-img" src="/images/products/blueberries-2.jpg" data-ph="https://placehold.co/520x390/2c4a7a/ffffff?text=Blueberries+2" alt="Hand-selecting fresh blueberries" loading="lazy"></figure>
+        <figure class="bc-pp-reveal"><img class="bc-pp-img" src="/images/products/blueberries-3.jpg" data-ph="https://placehold.co/520x390/24477a/ffffff?text=Blueberries+3" alt="Punnets of packed blueberries" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3) PRODUCT SPECIFICATIONS ============ -->
+  <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-specs-section">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Details</span>
+        <h2>Product Specifications</h2>
+        <p class="bc-pp-lead">Values marked [CONFIRM] are starting points — update them in the CONFIG block.</p>
+      </div>
+      <!-- Spec rows are generated from CONFIG.specs in the script (edit there) -->
+      <dl class="bc-pp-specs bc-pp-reveal" id="bc-pp-specs"></dl>
+    </div>
+  </section>
+
+  <!-- ============ 4) PACKAGING OPTIONS ============ -->
+  <section class="bc-pp-section" id="bc-pp-packaging">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Packaging</span>
+        <h2>Packaging Options</h2>
+      </div>
+      <div class="bc-pp-grid bc-pp-g4">
+        <div class="bc-pp-card bc-pp-reveal"><span class="bc-pp-ico">🫐</span><h3>125g clamshell</h3><p>Retail-ready, premium supermarket shelves.</p></div>
+        <div class="bc-pp-card bc-pp-reveal"><span class="bc-pp-ico">🫐</span><h3>250g clamshell</h3><p>Standard retail packaging for grocery chains.</p></div>
+        <div class="bc-pp-card bc-pp-reveal"><span class="bc-pp-ico">🫐</span><h3>500g clamshell</h3><p>Value packs for value retail and foodservice.</p></div>
+        <div class="bc-pp-card bc-pp-reveal"><span class="bc-pp-ico">📦</span><h3>Bulk</h3><p>For processing, repacking, and foodservice volumes.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- mid-page CTA — visible after buyer has seen specs & packaging -->
+  <div class="bc-pp-wrap bc-pp-mid-cta">
+    <p>Ready to discuss your blueberry supply requirements?</p>
+    <a class="bc-pp-btn bc-pp-btn--amber bc-pp-reveal" href="#bc-pp-cta">Request a Quote</a>
+  </div>
+
+  <!-- ============ 5) HARVEST SEASON ============ -->
+  <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-season">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Availability</span>
+        <h2>Harvest Season &amp; Availability</h2>
+      </div>
+      <div class="bc-pp-reveal">
+        <div class="bc-pp-season-grid" role="img" aria-label="Blueberry harvest season: November through May">
+          <div class="bc-pp-season-mo on">Jan</div>
+          <div class="bc-pp-season-mo on">Feb</div>
+          <div class="bc-pp-season-mo on">Mar</div>
+          <div class="bc-pp-season-mo on">Apr</div>
+          <div class="bc-pp-season-mo on">May</div>
+          <div class="bc-pp-season-mo">Jun</div>
+          <div class="bc-pp-season-mo">Jul</div>
+          <div class="bc-pp-season-mo">Aug</div>
+          <div class="bc-pp-season-mo">Sep</div>
+          <div class="bc-pp-season-mo">Oct</div>
+          <div class="bc-pp-season-mo on">Nov</div>
+          <div class="bc-pp-season-mo on">Dec</div>
+        </div>
+        <div class="bc-pp-season-legend">
+          <span class="bc-pp-season-legend-item"><span class="bc-pp-season-legend-dot" style="background:#E0A52E"></span>In season</span>
+          <span class="bc-pp-season-legend-item"><span class="bc-pp-season-legend-dot" style="background:var(--bc-line)"></span>Off season</span>
+        </div>
+        <p class="bc-pp-season-note">Moroccan blueberries are available from <strong>November through May</strong>, filling the supply gap during the European off-season window. Our season offers consistent volumes when Northern European production is at its lowest. Contact us for current crop availability and forward-planning discussions.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6) QUALITY & CERTIFICATIONS ============ -->
+  <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-quality">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Quality</span>
+        <h2>Quality You Can Trust</h2>
+      </div>
+      <div class="bc-pp-prose bc-pp-reveal">
+        <p>Every batch is grown under GlobalG.A.P. good agricultural practices and GRASP social-compliance standards, with full traceability from field to dispatch. Fruit is graded, inspected, and packed to export specification under strict quality control.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6) COLD CHAIN & LOGISTICS ============ -->
+  <section class="bc-pp-section" id="bc-pp-coldchain">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Logistics</span>
+        <h2>Cold Chain &amp; Export Logistics</h2>
+      </div>
+      <div class="bc-pp-prose bc-pp-reveal">
+        <p>Blueberries are pre-cooled within hours of harvest and held in temperature-controlled conditions through grading, packing, and transit. We handle export-ready documentation and ship by air, sea, or road, keeping the cold chain intact to your destination.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7) COUNTER-SEASONAL ADVANTAGE ============ -->
+  <section class="bc-pp-section bc-pp-section--cream" id="bc-pp-counterseason">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-callout bc-pp-reveal">
+        <span class="bc-pp-eyebrow" style="color:rgba(255,255,255,.85)">Counter-seasonal advantage</span>
+        <h2>Available When You Need It Most</h2>
+        <p>Morocco's blueberry season runs from late autumn through spring, filling the supply gap when European domestic production is at its lowest. Sourcing from Morocco gives buyers consistent, high-quality volumes during the off-season window — with shorter transit times to Europe than overseas origins.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8) WHY SOURCE FROM US ============ -->
+  <section class="bc-pp-section" id="bc-pp-why">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">The BerryCross advantage</span>
+        <h2>Why Source From Us</h2>
+      </div>
+      <div class="bc-pp-grid bc-pp-g3">
+        <div class="bc-pp-card bc-pp-reveal"><span class="bc-pp-ico">🌱</span><h3>Producer-to-Export Control</h3><p>We grow and ship, so quality is controlled end to end.</p></div>
+        <div class="bc-pp-card bc-pp-reveal"><span class="bc-pp-ico">❄️</span><h3>Cold Chain Integrity</h3><p>Temperature-managed from harvest to your dock.</p></div>
+        <div class="bc-pp-card bc-pp-reveal"><span class="bc-pp-ico">🏷️</span><h3>Flexible &amp; Private Label</h3><p>Custom packaging and your-brand options.</p></div>
+        <div class="bc-pp-card bc-pp-reveal"><span class="bc-pp-ico">✅</span><h3>Certified &amp; Traceable</h3><p>GlobalG.A.P. and GRASP, fully traceable.</p></div>
+        <div class="bc-pp-card bc-pp-reveal"><span class="bc-pp-ico">📦</span><h3>Reliable Volumes</h3><p>Consistent supply across the season.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8) FAQ ============ -->
+  <section class="bc-pp-section" id="bc-pp-faq">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-head bc-pp-reveal">
+        <span class="bc-pp-eyebrow">Buyer FAQ</span>
+        <h2>Frequently Asked Questions</h2>
+      </div>
+      <div class="bc-pp-faq-list bc-pp-reveal">
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bb-1" id="faq-bb-q1">What is the minimum order quantity (MOQ) for blueberries?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bb-1" role="region" aria-labelledby="faq-bb-q1"><div class="bc-pp-faq-a-inner">Our minimum order quantity for fresh Moroccan blueberries is [CONFIRM: e.g. 1 pallet / X kg]. For trial orders, please get in touch — we assess feasibility based on current crop availability and your destination.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bb-2" id="faq-bb-q2">What packaging formats do you offer?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bb-2" role="region" aria-labelledby="faq-bb-q2"><div class="bc-pp-faq-a-inner">We supply blueberries in 125g, 250g, and 500g clamshell punnets for retail, and in bulk formats for processing, repacking, or foodservice. Private label and custom packaging are available on request for established buyers.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bb-3" id="faq-bb-q3">Are your blueberries GlobalG.A.P. certified?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bb-3" role="region" aria-labelledby="faq-bb-q3"><div class="bc-pp-faq-a-inner">Yes. All our blueberries are grown under GlobalG.A.P. good agricultural practices and GRASP social-compliance certification, with full traceability from farm to dispatch. Certification documents are available on request.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bb-4" id="faq-bb-q4">What shipping options are available and how long does transit take?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bb-4" role="region" aria-labelledby="faq-bb-q4"><div class="bc-pp-faq-a-inner">We ship by road, sea reefer, and air freight depending on destination and volume. Transit times from Morocco to Europe are typically [CONFIRM: e.g. 2–5 days by road for Southern Europe, 5–8 days for Northern Europe]. The full cold chain (0–2°C) is maintained throughout.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bb-5" id="faq-bb-q5">Can you supply private label packaging?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bb-5" role="region" aria-labelledby="faq-bb-q5"><div class="bc-pp-faq-a-inner">Yes. We offer private label packaging for buyers ordering at sufficient volumes. We can print your brand on clamshells and outer cartons. Send us your branding requirements when requesting a quote and we will include a packaging options proposal.</div></div>
+        </div>
+        <div class="bc-pp-faq-item">
+          <button class="bc-pp-faq-q" aria-expanded="false" aria-controls="faq-bb-6" id="faq-bb-q6">How quickly will I receive a response to my quote request?<span class="bc-pp-faq-icon" aria-hidden="true">+</span></button>
+          <div class="bc-pp-faq-a" id="faq-bb-6" role="region" aria-labelledby="faq-bb-q6"><div class="bc-pp-faq-a-inner">We aim to respond to all quote requests within 24 hours on business days. For urgent enquiries, you can also reach us directly via WhatsApp for a faster reply.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9) FINAL CTA ============ -->
+  <section class="bc-pp-section bc-pp-final" id="bc-pp-cta">
+    <div class="bc-pp-wrap">
+      <div class="bc-pp-reveal">
+        <h2>Request a Quote for Blueberries</h2>
+        <p>Tell us your target volumes, packaging, and destination — we'll respond within 24 hours.</p>
+        <div class="bc-pp-btn-row" style="justify-content:center;margin-bottom:0">
+          <a class="bc-pp-btn bc-pp-btn--gold" data-wa data-wa-msg="Hello BerryCross, I'd like to request a quote for your Moroccan Blueberries. My target volumes / packaging / destination are:">Request a Quote</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      /* =====================================================================
+         CONFIG — OWNER: edit these values.
+         - whatsapp: international number, digits only (no +, spaces, dashes)
+         - email: sales/export inbox
+         - specSheet: replace "#REPLACE" with the uploaded Blueberries spec-sheet PDF URL
+         - specs: the Product Specifications table — edit a value here and the
+                  table updates automatically. Replace the [CONFIRM] notes with
+                  your confirmed figures.
+      ===================================================================== */
+      var CONFIG = {
+        whatsapp: "212623987845",
+        email: "contact@berry-cross.com",
+        specSheet: "#REPLACE",
+        specs: [
+          ["Origin", "Morocco (regions: Souss-Massa, Gharb, Loukkos — [CONFIRM])"],
+          ["Varieties", "Biloxi, Ventura, Star ([CONFIRM — list your actual varieties])"],
+          ["Calibre grades", "12mm+ · 14mm+ · 16mm+ · 18mm+ (jumbo) ([CONFIRM])"],
+          ["Brix (sweetness)", "12–15° ([CONFIRM])"],
+          ["Available packaging", "125g · 250g · 500g punnets (clamshells) · bulk"],
+          ["Season", "November – May"],
+          ["Shelf life", "up to ~14 days under proper cold chain ([CONFIRM])"],
+          ["Storage / transport temp", "0–2°C"],
+          ["Certifications", "GlobalG.A.P. · GRASP"]
+        ]
+      };
+
+      var root = document.querySelector('.bc-pp');
+      if(!root) return;
+
+      function waLink(msg){ return "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg || "Hello BerryCross, I'd like to request a quote."); }
+
+      /* WhatsApp CTAs */
+      root.querySelectorAll('[data-wa]').forEach(function(el){
+        el.addEventListener('click', function(e){ e.preventDefault(); window.open(waLink(el.getAttribute('data-wa-msg')), '_blank', 'noopener'); });
+      });
+
+      /* PDF (spec sheet) buttons */
+      root.querySelectorAll('[data-pdf]').forEach(function(el){
+        var url = CONFIG[el.getAttribute('data-pdf')] || "#REPLACE";
+        el.setAttribute('href', url);
+        el.addEventListener('click', function(e){
+          if(!url || url === "#REPLACE"){ e.preventDefault(); alert("The spec-sheet PDF link hasn't been set yet — add it in the CONFIG block."); }
+        });
+      });
+
+      /* FAQ accordion */
+      var faqItems = Array.prototype.slice.call(root.querySelectorAll('.bc-pp-faq-item'));
+      faqItems.forEach(function(item){
+        var q = item.querySelector('.bc-pp-faq-q');
+        var a = item.querySelector('.bc-pp-faq-a');
+        if(!q || !a) return;
+        q.addEventListener('click', function(){
+          var isOpen = q.getAttribute('aria-expanded') === 'true';
+          faqItems.forEach(function(fi){
+            var fq = fi.querySelector('.bc-pp-faq-q');
+            var fa = fi.querySelector('.bc-pp-faq-a');
+            if(fq) fq.setAttribute('aria-expanded','false');
+            if(fa) fa.classList.remove('bc-pp-faq-open');
+          });
+          if(!isOpen){
+            q.setAttribute('aria-expanded','true');
+            a.classList.add('bc-pp-faq-open');
+          }
+        });
+      });
+
+      /* Hide sticky bar when final CTA is visible */
+      var stickyBar = root.querySelector('.bc-pp-sticky');
+      var ctaSection = root.querySelector('#bc-pp-cta');
+      if(stickyBar && ctaSection && 'IntersectionObserver' in window){
+        new IntersectionObserver(function(entries){
+          stickyBar.style.display = entries[0].isIntersecting ? 'none' : '';
+        },{threshold:0.1}).observe(ctaSection);
+      }
+
+      /* Smooth scroll for in-page anchors */
+      root.querySelectorAll('a[href^="#bc-pp-"]').forEach(function(a){
+        a.addEventListener('click', function(e){
+          var t = root.querySelector(a.getAttribute('href'));
+          if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      });
+
+      /* Build the spec table from CONFIG.specs */
+      var dl = root.querySelector('#bc-pp-specs');
+      if(dl){
+        var html = '';
+        CONFIG.specs.forEach(function(row){
+          html += '<div class="bc-pp-spec"><dt>' + esc(row[0]) + '</dt><dd>' + esc(row[1]) + '</dd></div>';
+        });
+        dl.innerHTML = html;
+      }
+      function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+      /* Product images: if a local photo is missing, show a clean labelled placeholder (no random stock) */
+      root.querySelectorAll('.bc-pp-img').forEach(function(img){
+        img.addEventListener('error', function(){
+          var ph = img.getAttribute('data-ph'), s = img.src;
+          if(ph && s.indexOf('placehold') === -1){ img.src = ph; } else { img.onerror = null; }
+        });
+      });
+
+      /* Scroll reveal (staggered, once) */
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var revealEls = Array.prototype.slice.call(root.querySelectorAll('.bc-pp-reveal'));
+      revealEls.forEach(function(el){
+        var sibs = Array.prototype.filter.call(el.parentNode.children, function(c){ return c.classList && c.classList.contains('bc-pp-reveal'); });
+        el.style.transitionDelay = (Math.min(sibs.indexOf(el), 8) * 70) + 'ms';
+      });
+      if(reduceMotion || !('IntersectionObserver' in window)){
+        revealEls.forEach(function(el){ el.classList.add('bc-pp-in'); });
+      } else {
+        var io = new IntersectionObserver(function(entries, obs){
+          entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('bc-pp-in'); obs.unobserve(e.target); } });
+        }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+        revealEls.forEach(function(el){ io.observe(el); });
+      }
+    })();
+  </script>
+
+  <!-- mobile sticky CTA bar (hidden on desktop via CSS, auto-hides when #bc-pp-cta is in view) -->
+  <div class="bc-pp-sticky" aria-label="Request a quote for blueberries">
+    <a href="#bc-pp-cta">Request a Quote for Blueberries</a>
+  </div>
+</div>
