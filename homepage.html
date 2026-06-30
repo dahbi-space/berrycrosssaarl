@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BerryCross — Premium Moroccan Berries &amp; Avocados for Export</title>
+  <!-- Concept 1a "Editorial" — converted from Claude Design to standard HTML -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #F6F1E7; font-family: 'Archivo', sans-serif; }
+    img { display: block; max-width: 100%; }
+    ::selection { background: #E0A52E; color: #2B3A67; }
+
+    /* ── Hover utilities (replaced Claude Design hover attributes) ─ */
+    .bc-btn-primary         { display:inline-flex;align-items:center;gap:10px;background:#E0A52E;color:#2B3A67;font-family:'Archivo',sans-serif;font-weight:700;font-size:16px;padding:18px 32px;border-radius:5px;text-decoration:none;transition:background .18s; }
+    .bc-btn-primary:hover   { background:#efb53f; }
+    .bc-btn-outline         { display:inline-flex;align-items:center;gap:10px;background:transparent;border:1.5px solid rgba(255,255,255,.4);color:#fff;font-family:'Archivo',sans-serif;font-weight:600;font-size:16px;padding:18px 32px;border-radius:5px;text-decoration:none;transition:border-color .18s; }
+    .bc-btn-outline:hover   { border-color:#fff; }
+    .bc-btn-sm              { display:inline-flex;align-items:center;gap:10px;background:#E0A52E;color:#2B3A67;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;padding:16px 26px;border-radius:5px;text-decoration:none;align-self:flex-start;transition:background .18s; }
+    .bc-btn-sm:hover        { background:#efb53f; }
+    .bc-btn-dl              { display:inline-flex;align-items:center;gap:10px;background:#E0A52E;color:#2B3A67;font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;padding:16px 28px;border-radius:5px;text-decoration:none;transition:background .18s; }
+    .bc-btn-dl:hover        { background:#efb53f; }
+    .bc-link-avail          { font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;color:#2B3A67;text-decoration:none;border-bottom:2px solid #E0A52E;padding-bottom:4px;transition:opacity .18s; }
+    .bc-link-avail:hover    { opacity:.7; }
+    .bc-resource-link       { display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid #ddd3bd;text-decoration:none;transition:opacity .18s; }
+    .bc-resource-link:hover { opacity:.7; }
+
+    /* ── FAQ: replace + with × when open ────────────────── */
+    details.bc-faq[open] > summary .bc-faq-icon { transform: rotate(45deg); }
+
+    /* ── Responsive ─────────────────────────────────────── */
+    @media (max-width:900px) {
+      .bc-stats           { grid-template-columns:repeat(2,1fr) !important; }
+      .bc-stats > div     { border-right:1px solid rgba(255,255,255,.1) !important; }
+      .bc-stats > div:nth-child(2),
+      .bc-stats > div:last-child { border-right:none !important; }
+      .bc-2col            { grid-template-columns:1fr !important; gap:24px !important; }
+      .bc-3col            { grid-template-columns:1fr !important; }
+      .bc-3col > div      { border-right:none !important; padding-left:0 !important; padding-right:0 !important; border-bottom:1px solid #ddd3bd; }
+      .bc-products        { grid-template-columns:1fr !important; }
+      .bc-products-sub    { grid-template-columns:1fr 1fr !important; }
+      .bc-markets         { grid-template-columns:1fr !important; }
+      .bc-markets-map     { order:-1; min-height:300px !important; aspect-ratio:auto !important; }
+      .bc-why             { grid-template-columns:repeat(2,1fr) !important; }
+      .bc-imgrow          { grid-template-columns:1fr !important; }
+      .bc-imgrow-img      { min-height:280px !important; }
+      .bc-process         { grid-template-columns:repeat(2,1fr) !important; }
+      .bc-certs           { grid-template-columns:repeat(3,1fr) !important; }
+      .bc-resources       { grid-template-columns:1fr !important; gap:0 !important; }
+      .bc-quote           { grid-template-columns:1fr !important; }
+    }
+    @media (max-width:600px) {
+      .bc-hero-btns       { flex-direction:column !important; align-items:stretch !important; }
+      .bc-hero-btns a     { justify-content:center !important; }
+      .bc-herocontent     { padding-top:52px !important; padding-bottom:8px; }
+      .bc-stats           { grid-template-columns:repeat(2,1fr) !important; }
+      .bc-stats > div     { padding-right:0 !important; border-right:none !important; }
+      .bc-products-sub    { grid-template-columns:1fr !important; }
+      .bc-why             { grid-template-columns:1fr !important; }
+      .bc-process         { grid-template-columns:1fr !important; }
+      .bc-certs           { grid-template-columns:repeat(2,1fr) !important; }
+      .bc-section         { padding-left:20px !important; padding-right:20px !important; }
+      .bc-markets-map     { min-height:220px !important; }
+      .bc-imgrow-img      { min-height:220px !important; }
+      .bc-faq > summary   { font-size:16px !important; }
+      .bc-quote-placeholder { min-height:240px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     BerryCross Homepage — Concept 1a "Editorial"
+     Paste this entire block into an Elementor HTML widget.
+     Remove <nav> and <footer> — WordPress/WoodMart handles those.
+     Replace  [fluentform id="5"]  placeholder with real shortcode.
+============================================================ -->
+
+<section style="font-family:'Archivo',sans-serif;background:#F6F1E7;color:#1d2440;position:relative;overflow-x:hidden;">
+
+  <!-- ══ HERO ══════════════════════════════════════════════════ -->
+  <header class="bc-hero" style="position:relative;min-height:90vh;background:#16203f;overflow:hidden;display:flex;flex-direction:column;">
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(125deg,#1b264a 0 22px,#212e57 22px 44px);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,21,48,.96) 0%,rgba(15,21,48,.86) 38%,rgba(15,21,48,.45) 72%,rgba(15,21,48,.2) 100%);"></div>
+    <!-- drop hero image here — sunrise berry harvest, full-bleed -->
+    <span style="position:absolute;right:34px;bottom:30px;z-index:6;font-family:'Archivo',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:6px 12px;border-radius:3px;">drop hero image — sunrise berry harvest, full-bleed</span>
+
+    <div class="bc-herocontent" style="position:relative;z-index:10;flex:1;display:flex;flex-direction:column;justify-content:center;padding:80px 6vw 0;max-width:1180px;">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:26px;">
+        <span style="width:34px;height:1.5px;background:#E0A52E;"></span>
+        <span style="font-family:'Spectral',serif;font-style:italic;font-size:18px;color:#E0A52E;">Moroccan grower &amp; exporter</span>
+      </div>
+      <h1 style="margin:0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(44px,6.6vw,104px);line-height:.98;letter-spacing:-.03em;color:#fff;max-width:14ch;">Premium berries &amp; avocados, shipped with certainty.</h1>
+      <p style="margin:30px 0 0;font-family:'Archivo',sans-serif;font-weight:400;font-size:clamp(16px,1.35vw,20px);line-height:1.55;color:rgba(255,255,255,.78);max-width:52ch;">A reliable Moroccan partner for importers, wholesalers, supermarkets and HORECA — delivering graded, certified fruit across Europe and the Gulf.</p>
+      <div class="bc-hero-btns" style="display:flex;flex-wrap:wrap;gap:14px;margin-top:38px;">
+        <a href="#bc-raq" class="bc-btn-primary">Request a quote →</a>
+        <a href="#" class="bc-btn-outline">Download catalogue</a>
+      </div>
+    </div>
+
+    <!-- stat strip -->
+    <div style="position:relative;z-index:10;border-top:1px solid rgba(255,255,255,.14);margin-top:46px;">
+      <div class="bc-stats" style="display:grid;grid-template-columns:repeat(4,1fr);max-width:1180px;padding:0 6vw;">
+        <div style="padding:26px 28px 30px 0;border-right:1px solid rgba(255,255,255,.1);">
+          <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.4vw,46px);line-height:1;color:#E0A52E;letter-spacing:-.02em;">5</div>
+          <div style="margin-top:8px;font-family:'Archivo',sans-serif;font-size:13px;font-weight:500;letter-spacing:.02em;color:rgba(255,255,255,.72);">Berry &amp; avocado lines</div>
+        </div>
+        <div style="padding:26px 28px 30px 0;border-right:1px solid rgba(255,255,255,.1);">
+          <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.4vw,46px);line-height:1;color:#E0A52E;letter-spacing:-.02em;">12+</div>
+          <div style="margin-top:8px;font-family:'Archivo',sans-serif;font-size:13px;font-weight:500;letter-spacing:.02em;color:rgba(255,255,255,.72);">Export markets served</div>
+        </div>
+        <div style="padding:26px 28px 30px 0;border-right:1px solid rgba(255,255,255,.1);">
+          <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.4vw,46px);line-height:1;color:#E0A52E;letter-spacing:-.02em;">48h</div>
+          <div style="margin-top:8px;font-family:'Archivo',sans-serif;font-size:13px;font-weight:500;letter-spacing:.02em;color:rgba(255,255,255,.72);">Harvest to cold-port</div>
+        </div>
+        <div style="padding:26px 28px 30px 0;border-right:1px solid rgba(255,255,255,.1);border-right:none;">
+          <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.4vw,46px);line-height:1;color:#E0A52E;letter-spacing:-.02em;">100%</div>
+          <div style="margin-top:8px;font-family:'Archivo',sans-serif;font-size:13px;font-weight:500;letter-spacing:.02em;color:rgba(255,255,255,.72);">Cold-chain monitored</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══ TRUSTED PARTNER ═══════════════════════════════════════ -->
+  <section class="bc-section" style="padding:clamp(80px,9vw,140px) 6vw;max-width:1180px;margin:0 auto;">
+    <div class="bc-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,90px);align-items:end;">
+      <div>
+        <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E84E78;">— A trusted partner</div>
+        <h2 style="margin:22px 0 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.6vw,52px);line-height:1.04;letter-spacing:-.02em;color:#2B3A67;">Built for buyers who can't afford a missed shipment.</h2>
+      </div>
+      <p style="margin:0;font-family:'Spectral',serif;font-size:clamp(17px,1.5vw,22px);line-height:1.6;color:#46506e;">BerryCross is a Moroccan grower-exporter focused on one thing: getting premium, certified fruit onto your shelves on time, at temperature, and to spec — consignment after consignment.</p>
+    </div>
+    <div class="bc-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:clamp(48px,5vw,76px);border-top:1px solid #ddd3bd;">
+      <div style="padding:34px 30px 0 0;border-right:1px solid #ddd3bd;">
+        <div style="font-family:'Spectral',serif;font-style:italic;font-size:30px;color:#E0A52E;">01</div>
+        <h3 style="margin:14px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;color:#2B3A67;">Consistent quality</h3>
+        <p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#5a627c;">Every lot graded to a single export standard before it leaves the pack-house.</p>
+      </div>
+      <div style="padding:34px 30px 0;border-right:1px solid #ddd3bd;">
+        <div style="font-family:'Spectral',serif;font-style:italic;font-size:30px;color:#E0A52E;">02</div>
+        <h3 style="margin:14px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;color:#2B3A67;">On-time delivery</h3>
+        <p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#5a627c;">Harvest-to-port in 48 hours, with air and reefer lanes you can plan around.</p>
+      </div>
+      <div style="padding:34px 0 0 30px;">
+        <div style="font-family:'Spectral',serif;font-style:italic;font-size:30px;color:#E0A52E;">03</div>
+        <h3 style="margin:14px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;color:#2B3A67;">Full accountability</h3>
+        <p style="margin:0 0 18px;font-size:15px;line-height:1.6;color:#5a627c;">Certified, traceable and documented down to the individual lot.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PRODUCTS ══════════════════════════════════════════════ -->
+  <section style="background:#fff;padding:clamp(80px,9vw,140px) 6vw;">
+    <div class="bc-section" style="max-width:1180px;margin:0 auto;">
+      <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+        <div>
+          <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E84E78;">— The range</div>
+          <h2 style="margin:20px 0 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.8vw,54px);line-height:1.02;letter-spacing:-.02em;color:#2B3A67;max-width:16ch;">Premium products, <span style="font-family:'Spectral',serif;font-weight:400;font-style:italic;color:#E0A52E;">grown in Morocco.</span></h2>
+        </div>
+        <a href="#bc-raq" class="bc-link-avail">See full availability →</a>
+      </div>
+
+      <!-- featured + grid -->
+      <div class="bc-products" style="display:grid;grid-template-columns:1.15fr 1fr;gap:30px;margin-top:clamp(40px,4.5vw,70px);">
+        <!-- featured: Blueberries -->
+        <article style="position:relative;border-radius:8px;overflow:hidden;min-height:520px;display:flex;flex-direction:column;justify-content:flex-end;background:repeating-linear-gradient(135deg,#e8dec8 0 18px,#f0e8d7 18px 36px);">
+          <span style="position:absolute;top:18px;left:18px;font-family:'Archivo',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#9b8e72;background:rgba(255,255,255,.72);padding:5px 9px;border-radius:3px;">photo — blueberry punnet, top-down</span>
+          <span style="position:absolute;top:18px;right:18px;width:38px;height:38px;border-radius:50%;background:#2B3A67;"></span>
+          <div style="position:relative;padding:34px;background:linear-gradient(180deg,transparent,rgba(15,21,48,.9));">
+            <div style="font-family:'Spectral',serif;font-style:italic;font-size:15px;color:#E0A52E;">Myrtille · Nov – Jun</div>
+            <h3 style="margin:6px 0 8px;font-family:'Archivo',sans-serif;font-weight:800;font-size:34px;color:#fff;letter-spacing:-.02em;">Blueberries</h3>
+            <p style="margin:0;max-width:42ch;font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.8);">Firm, high-brix fruit with a deep natural bloom — graded for calibre and shelf life.</p>
+          </div>
+        </article>
+        <!-- remaining 4 products -->
+        <div class="bc-products-sub" style="display:grid;grid-template-columns:1fr 1fr;gap:30px;">
+          <article style="position:relative;border-radius:8px;overflow:hidden;min-height:245px;background:repeating-linear-gradient(135deg,#ece3ce 0 16px,#f4ecdc 16px 32px);display:flex;flex-direction:column;justify-content:flex-end;">
+            <span style="position:absolute;top:14px;left:14px;width:30px;height:30px;border-radius:50%;background:#E84E78;"></span>
+            <span style="position:absolute;top:16px;right:14px;font-family:'Archivo',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9b8e72;background:rgba(255,255,255,.72);padding:4px 7px;border-radius:3px;">02</span>
+            <div style="position:relative;padding:18px;background:linear-gradient(180deg,transparent,rgba(15,21,48,.86));">
+              <div style="font-family:'Spectral',serif;font-style:italic;font-size:12.5px;color:#E0A52E;">Framboise · Sep – Apr</div>
+              <h3 style="margin:3px 0 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#fff;letter-spacing:-.01em;">Raspberries</h3>
+            </div>
+          </article>
+          <article style="position:relative;border-radius:8px;overflow:hidden;min-height:245px;background:repeating-linear-gradient(135deg,#ece3ce 0 16px,#f4ecdc 16px 32px);display:flex;flex-direction:column;justify-content:flex-end;">
+            <span style="position:absolute;top:14px;left:14px;width:30px;height:30px;border-radius:50%;background:#3b2f56;"></span>
+            <span style="position:absolute;top:16px;right:14px;font-family:'Archivo',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9b8e72;background:rgba(255,255,255,.72);padding:4px 7px;border-radius:3px;">03</span>
+            <div style="position:relative;padding:18px;background:linear-gradient(180deg,transparent,rgba(15,21,48,.86));">
+              <div style="font-family:'Spectral',serif;font-style:italic;font-size:12.5px;color:#E0A52E;">Mûre · Oct – Apr</div>
+              <h3 style="margin:3px 0 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#fff;letter-spacing:-.01em;">Blackberries</h3>
+            </div>
+          </article>
+          <article style="position:relative;border-radius:8px;overflow:hidden;min-height:245px;background:repeating-linear-gradient(135deg,#ece3ce 0 16px,#f4ecdc 16px 32px);display:flex;flex-direction:column;justify-content:flex-end;">
+            <span style="position:absolute;top:14px;left:14px;width:30px;height:30px;border-radius:50%;background:#d83a5e;"></span>
+            <span style="position:absolute;top:16px;right:14px;font-family:'Archivo',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9b8e72;background:rgba(255,255,255,.72);padding:4px 7px;border-radius:3px;">04</span>
+            <div style="position:relative;padding:18px;background:linear-gradient(180deg,transparent,rgba(15,21,48,.86));">
+              <div style="font-family:'Spectral',serif;font-style:italic;font-size:12.5px;color:#E0A52E;">Fraise · Dec – May</div>
+              <h3 style="margin:3px 0 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#fff;letter-spacing:-.01em;">Strawberries</h3>
+            </div>
+          </article>
+          <article style="position:relative;border-radius:8px;overflow:hidden;min-height:245px;background:repeating-linear-gradient(135deg,#ece3ce 0 16px,#f4ecdc 16px 32px);display:flex;flex-direction:column;justify-content:flex-end;">
+            <span style="position:absolute;top:14px;left:14px;width:30px;height:30px;border-radius:50%;background:#6B7A3F;"></span>
+            <span style="position:absolute;top:16px;right:14px;font-family:'Archivo',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#9b8e72;background:rgba(255,255,255,.72);padding:4px 7px;border-radius:3px;">05</span>
+            <div style="position:relative;padding:18px;background:linear-gradient(180deg,transparent,rgba(15,21,48,.86));">
+              <div style="font-family:'Spectral',serif;font-style:italic;font-size:12.5px;color:#E0A52E;">Avocat · Nov – Apr</div>
+              <h3 style="margin:3px 0 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#fff;letter-spacing:-.01em;">Avocados</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ AVAILABILITY CALENDAR ═════════════════════════════════ -->
+  <section class="bc-section" style="padding:clamp(80px,9vw,130px) 6vw;max-width:1180px;margin:0 auto;">
+    <div style="text-align:center;max-width:60ch;margin:0 auto;">
+      <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E84E78;">— Availability</div>
+      <h2 style="margin:18px 0 14px;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1.05;letter-spacing:-.02em;color:#2B3A67;">When each product ships</h2>
+      <p style="margin:0;font-family:'Spectral',serif;font-size:18px;font-style:italic;color:#5a627c;">Overlapping windows keep your programme supplied through the year.</p>
+    </div>
+
+    <div style="margin-top:clamp(40px,5vw,64px);background:#fff;border:1px solid #e7ddc6;border-radius:10px;padding:clamp(20px,3vw,40px);overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <div style="min-width:680px;">
+        <!-- month header -->
+        <div style="display:grid;grid-template-columns:170px repeat(12,1fr);align-items:center;padding-bottom:14px;border-bottom:1px solid #eee3cd;">
+          <div></div>
+          <div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">J</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">F</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">M</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">A</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">M</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">J</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">J</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">A</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">S</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">O</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">N</div><div style="text-align:center;font-family:'Archivo',sans-serif;font-size:12px;font-weight:700;color:#9aa0b4;">D</div>
+        </div>
+        <!-- product rows -->
+
+        <div style="display:grid;grid-template-columns:170px repeat(12,1fr);align-items:center;padding:16px 0;border-bottom:1px solid #f3ecd9;">
+          <div style="padding-right:14px;">
+            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;color:#2B3A67;">Blueberries</div>
+            <div style="font-family:'Spectral',serif;font-style:italic;font-size:12.5px;color:#9aa0b4;">Myrtille</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:170px repeat(12,1fr);align-items:center;padding:16px 0;border-bottom:1px solid #f3ecd9;">
+          <div style="padding-right:14px;">
+            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;color:#2B3A67;">Raspberries</div>
+            <div style="font-family:'Spectral',serif;font-style:italic;font-size:12.5px;color:#9aa0b4;">Framboise</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:170px repeat(12,1fr);align-items:center;padding:16px 0;border-bottom:1px solid #f3ecd9;">
+          <div style="padding-right:14px;">
+            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;color:#2B3A67;">Blackberries</div>
+            <div style="font-family:'Spectral',serif;font-style:italic;font-size:12.5px;color:#9aa0b4;">Mûre</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:170px repeat(12,1fr);align-items:center;padding:16px 0;border-bottom:1px solid #f3ecd9;">
+          <div style="padding-right:14px;">
+            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;color:#2B3A67;">Strawberries</div>
+            <div style="font-family:'Spectral',serif;font-style:italic;font-size:12.5px;color:#9aa0b4;">Fraise</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:170px repeat(12,1fr);align-items:center;padding:16px 0;border-bottom:1px solid #f3ecd9;">
+          <div style="padding-right:14px;">
+            <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:15px;color:#2B3A67;">Avocados</div>
+            <div style="font-family:'Spectral',serif;font-style:italic;font-size:12.5px;color:#9aa0b4;">Avocat</div>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:5px;height:5px;border-radius:50%;background:#d6cdb8;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:transparent;border:2px solid #aeb6cf;box-sizing:border-box;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div><div style="display:flex;align-items:center;justify-content:center;"><span style="width:15px;height:15px;border-radius:50%;background:#2B3A67;flex:0 0 auto;display:block;"></span></div>
+        </div>
+        <!-- legend -->
+        <div style="display:flex;gap:28px;align-items:center;flex-wrap:wrap;padding-top:20px;font-family:'Archivo',sans-serif;font-size:13px;color:#5a627c;">
+          <span style="display:inline-flex;align-items:center;gap:9px;"><span style="width:14px;height:14px;border-radius:50%;background:#2B3A67;display:inline-block;"></span>Peak season</span>
+          <span style="display:inline-flex;align-items:center;gap:9px;"><span style="width:14px;height:14px;border-radius:50%;border:2px solid #aeb6cf;box-sizing:border-box;display:inline-block;"></span>Limited</span>
+          <span style="display:inline-flex;align-items:center;gap:9px;"><span style="width:6px;height:6px;border-radius:50%;background:#d6cdb8;display:inline-block;"></span>Off-season</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ MARKETS / MAP ═════════════════════════════════════════ -->
+  <section style="background:#16203f;color:#fff;padding:clamp(80px,9vw,130px) 6vw;">
+    <div class="bc-section" style="max-width:1180px;margin:0 auto;">
+      <div style="margin-bottom:clamp(36px,4vw,56px);">
+        <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E0A52E;">— Markets</div>
+        <h2 style="margin:18px 0 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,50px);line-height:1.03;letter-spacing:-.02em;max-width:18ch;">Delivering Moroccan fruit across Europe &amp; the Gulf.</h2>
+      </div>
+      <div class="bc-markets" style="display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(30px,4vw,56px);align-items:stretch;">
+
+        <!-- ── Animated SVG map ── -->
+        <!-- Replace inner SVG content with branded world-map artwork when ready -->
+        <div class="bc-markets-map" style="position:relative;border:1px solid rgba(255,255,255,.16);border-radius:10px;width:100%;aspect-ratio:10/7;background:radial-gradient(rgba(255,255,255,.10) 1.4px,transparent 1.4px);background-size:26px 26px;background-color:#1b264a;overflow:hidden;">
+          <svg viewBox="0 0 100 70" preserveAspectRatio="xMidYMid meet" style="position:absolute;inset:0;width:100%;height:100%;" aria-label="Trade routes from Morocco to Europe and the Gulf">
+
+            <!-- Route arcs: draw-in then hold, staggered per destination -->
+            <g fill="none" stroke="#E0A52E" stroke-width="0.42" stroke-linecap="round">
+              <!-- Morocco → France / Germany (~50,25) -->
+              <path d="M22 53 Q40 24 50 25" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0.85">
+                <animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;0.32;0.8;1" dur="7s" begin="0s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0 0 1 1;0.4 0 0.2 1"/>
+              </path>
+              <!-- Morocco → Scandinavia (~45,17) -->
+              <path d="M22 53 Q33 17 45 17" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0.7">
+                <animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;0.32;0.8;1" dur="7s" begin="0.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0 0 1 1;0.4 0 0.2 1"/>
+              </path>
+              <!-- Morocco → United Kingdom (~57,11) -->
+              <path d="M22 53 Q45 8 57 11" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0.6">
+                <animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;0.32;0.8;1" dur="7s" begin="1.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0 0 1 1;0.4 0 0.2 1"/>
+              </path>
+              <!-- Morocco → Gulf (~83,41) -->
+              <path d="M22 53 Q56 32 83 41" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" opacity="0.7">
+                <animate attributeName="stroke-dashoffset" values="1;0;0;1" keyTimes="0;0.32;0.8;1" dur="7s" begin="2.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0 0 1 1;0.4 0 0.2 1"/>
+              </path>
+            </g>
+
+            <!-- Destination arrival pulse rings -->
+            <g>
+              <!-- France/Germany pulse -->
+              <circle cx="50" cy="25" r="1.4" fill="#E84E78" opacity="0">
+                <animate attributeName="r"       values="1.4;5;1.4;1.4"       keyTimes="0;0.16;0.34;1" dur="4s" begin="3.0s" repeatCount="indefinite" calcMode="spline" keySplines="0.3 0 0.2 1;0.4 0 0.2 1;0 0 1 1"/>
+                <animate attributeName="opacity" values="0.55;0;0;0"           keyTimes="0;0.34;0.9;1" dur="4s" begin="3.0s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Scandinavia pulse -->
+              <circle cx="45" cy="17" r="1.4" fill="#E84E78" opacity="0">
+                <animate attributeName="r"       values="1.4;5;1.4;1.4"       keyTimes="0;0.16;0.34;1" dur="4s" begin="3.9s" repeatCount="indefinite" calcMode="spline" keySplines="0.3 0 0.2 1;0.4 0 0.2 1;0 0 1 1"/>
+                <animate attributeName="opacity" values="0.55;0;0;0"           keyTimes="0;0.34;0.9;1" dur="4s" begin="3.9s" repeatCount="indefinite"/>
+              </circle>
+              <!-- UK pulse -->
+              <circle cx="57" cy="11" r="1.4" fill="#E84E78" opacity="0">
+                <animate attributeName="r"       values="1.4;5;1.4;1.4"       keyTimes="0;0.16;0.34;1" dur="4s" begin="4.8s" repeatCount="indefinite" calcMode="spline" keySplines="0.3 0 0.2 1;0.4 0 0.2 1;0 0 1 1"/>
+                <animate attributeName="opacity" values="0.55;0;0;0"           keyTimes="0;0.34;0.9;1" dur="4s" begin="4.8s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Gulf pulse -->
+              <circle cx="83" cy="41" r="1.4" fill="#E84E78" opacity="0">
+                <animate attributeName="r"       values="1.4;5;1.4;1.4"       keyTimes="0;0.16;0.34;1" dur="4s" begin="5.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.3 0 0.2 1;0.4 0 0.2 1;0 0 1 1"/>
+                <animate attributeName="opacity" values="0.55;0;0;0"           keyTimes="0;0.34;0.9;1" dur="4s" begin="5.7s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Solid destination pins -->
+              <circle cx="50" cy="25" r="1.4" fill="#E84E78"/>
+              <circle cx="45" cy="17" r="1.4" fill="#E84E78"/>
+              <circle cx="57" cy="11" r="1.4" fill="#E84E78"/>
+              <circle cx="83" cy="41" r="1.4" fill="#E84E78"/>
+            </g>
+
+            <!-- Travelling shipment dots -->
+            <g fill="#E0A52E">
+              <!-- → France/Germany -->
+              <g opacity="0">
+                <circle r="1.9" opacity="0.3"/><circle r="0.85"/>
+                <animateMotion path="M22 53 Q40 24 50 25" dur="3.6s" begin="0.8s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines="0.42 0 0.58 1"/>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="3.6s" begin="0.8s" repeatCount="indefinite"/>
+              </g>
+              <!-- → Scandinavia -->
+              <g opacity="0">
+                <circle r="1.9" opacity="0.3"/><circle r="0.85"/>
+                <animateMotion path="M22 53 Q33 17 45 17" dur="3.6s" begin="1.7s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines="0.42 0 0.58 1"/>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="3.6s" begin="1.7s" repeatCount="indefinite"/>
+              </g>
+              <!-- → UK -->
+              <g opacity="0">
+                <circle r="1.9" opacity="0.3"/><circle r="0.85"/>
+                <animateMotion path="M22 53 Q45 8 57 11" dur="3.6s" begin="2.6s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines="0.42 0 0.58 1"/>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="3.6s" begin="2.6s" repeatCount="indefinite"/>
+              </g>
+              <!-- → Gulf -->
+              <g opacity="0">
+                <circle r="1.9" opacity="0.3"/><circle r="0.85"/>
+                <animateMotion path="M22 53 Q56 32 83 41" dur="3.6s" begin="3.5s" repeatCount="indefinite" calcMode="spline" keyPoints="0;1" keyTimes="0;1" keySplines="0.42 0 0.58 1"/>
+                <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.88;1" dur="3.6s" begin="3.5s" repeatCount="indefinite"/>
+              </g>
+            </g>
+
+            <!-- Origin: Morocco — soft radial pulse -->
+            <g>
+              <circle cx="22" cy="53" r="2.4" fill="#E0A52E" opacity="0.42">
+                <animate attributeName="r"       values="2.4;6.2;2.4" keyTimes="0;0.5;1" dur="3.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.2 1"/>
+                <animate attributeName="opacity" values="0.42;0;0.42" keyTimes="0;0.5;1" dur="3.2s" repeatCount="indefinite"/>
+              </circle>
+              <circle cx="22" cy="53" r="2.4" fill="#E0A52E"/>
+              <circle cx="22" cy="53" r="1.05" fill="#16203f"/>
+            </g>
+
+            <text x="22" y="59.5" text-anchor="middle" font-family="Archivo, sans-serif" font-size="2.5" font-weight="700" letter-spacing="0.12" fill="#E0A52E">MOROCCO</text>
+            <text x="3.5" y="67.5" font-family="Archivo, monospace" font-size="1.95" letter-spacing="0.06" fill="rgba(255,255,255,.5)">replace with branded world-map artwork</text>
+          </svg>
+        </div>
+
+        <!-- Market regions list -->
+        <div style="display:flex;flex-direction:column;">
+            <div style="padding:22px 0;border-bottom:1px solid rgba(255,255,255,.14);">
+              <h3 style="margin:0 0 6px;font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;color:#fff;">Western Europe</h3>
+              <div style="font-family:'Spectral',serif;font-style:italic;font-size:14px;color:#E0A52E;margin-bottom:6px;">France · Germany · Netherlands · Spain</div>
+              <div style="font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.66);">Reefer &amp; air freight, 2–4 day transit</div>
+            </div>
+            <div style="padding:22px 0;border-bottom:1px solid rgba(255,255,255,.14);">
+              <h3 style="margin:0 0 6px;font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;color:#fff;">United Kingdom</h3>
+              <div style="font-family:'Spectral',serif;font-style:italic;font-size:14px;color:#E0A52E;margin-bottom:6px;">London · Manchester · regional DCs</div>
+              <div style="font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.66);">Air &amp; groupage, programme volumes</div>
+            </div>
+            <div style="padding:22px 0;border-bottom:1px solid rgba(255,255,255,.14);">
+              <h3 style="margin:0 0 6px;font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;color:#fff;">Gulf &amp; Middle East</h3>
+              <div style="font-family:'Spectral',serif;font-style:italic;font-size:14px;color:#E0A52E;margin-bottom:6px;">UAE · Saudi Arabia · Qatar</div>
+              <div style="font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.66);">Daily air corridors, retail-ready</div>
+            </div>
+            <div style="padding:22px 0;border-bottom:1px solid rgba(255,255,255,.14);">
+              <h3 style="margin:0 0 6px;font-family:'Archivo',sans-serif;font-weight:700;font-size:19px;color:#fff;">Scandinavia</h3>
+              <div style="font-family:'Spectral',serif;font-style:italic;font-size:14px;color:#E0A52E;margin-bottom:6px;">Sweden · Denmark · Norway</div>
+              <div style="font-size:13.5px;line-height:1.5;color:rgba(255,255,255,.66);">Consolidated reefer lanes</div>
+            </div>
+          <a href="#bc-raq" class="bc-btn-sm" style="margin-top:26px;">Ship to your market →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHY CHOOSE US ═════════════════════════════════════════ -->
+  <section class="bc-section" style="padding:clamp(80px,9vw,130px) 6vw;max-width:1180px;margin:0 auto;">
+    <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E84E78;">— Why BerryCross</div>
+    <h2 style="margin:18px 0 clamp(40px,4.5vw,64px);font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,50px);line-height:1.03;letter-spacing:-.02em;color:#2B3A67;max-width:20ch;">The reasons buyers keep reordering.</h2>
+    <div class="bc-why" style="display:grid;grid-template-columns:repeat(3,1fr);gap:0 40px;border-top:1px solid #ddd3bd;">
+      <div style="padding:36px 0 38px;border-bottom:1px solid #ddd3bd;">
+        <div style="font-family:'Spectral',serif;font-style:italic;font-size:32px;color:#E0A52E;">01</div>
+        <h3 style="margin:14px 0 9px;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#2B3A67;letter-spacing:-.01em;">Premium quality</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#5a627c;max-width:34ch;">High-brix, hand-selected fruit graded to export standard.</p>
+      </div>
+      <div style="padding:36px 0 38px;border-bottom:1px solid #ddd3bd;">
+        <div style="font-family:'Spectral',serif;font-style:italic;font-size:32px;color:#E0A52E;">02</div>
+        <h3 style="margin:14px 0 9px;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#2B3A67;letter-spacing:-.01em;">Year-round windows</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#5a627c;max-width:34ch;">Overlapping seasons keep your shelves supplied.</p>
+      </div>
+      <div style="padding:36px 0 38px;border-bottom:1px solid #ddd3bd;">
+        <div style="font-family:'Spectral',serif;font-style:italic;font-size:32px;color:#E0A52E;">03</div>
+        <h3 style="margin:14px 0 9px;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#2B3A67;letter-spacing:-.01em;">Unbroken cold chain</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#5a627c;max-width:34ch;">Temperature-logged from field to your dock.</p>
+      </div>
+      <div style="padding:36px 0 38px;border-bottom:1px solid #ddd3bd;">
+        <div style="font-family:'Spectral',serif;font-style:italic;font-size:32px;color:#E0A52E;">04</div>
+        <h3 style="margin:14px 0 9px;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#2B3A67;letter-spacing:-.01em;">Reliable volumes</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#5a627c;max-width:34ch;">A scaled grower network built for programme demand.</p>
+      </div>
+      <div style="padding:36px 0 38px;border-bottom:1px solid #ddd3bd;">
+        <div style="font-family:'Spectral',serif;font-style:italic;font-size:32px;color:#E0A52E;">05</div>
+        <h3 style="margin:14px 0 9px;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#2B3A67;letter-spacing:-.01em;">Full traceability</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#5a627c;max-width:34ch;">Lot-level tracking on every consignment.</p>
+      </div>
+      <div style="padding:36px 0 38px;border-bottom:1px solid #ddd3bd;">
+        <div style="font-family:'Spectral',serif;font-style:italic;font-size:32px;color:#E0A52E;">06</div>
+        <h3 style="margin:14px 0 9px;font-family:'Archivo',sans-serif;font-weight:700;font-size:21px;color:#2B3A67;letter-spacing:-.01em;">Flexible packaging</h3>
+        <p style="margin:0;font-size:15px;line-height:1.6;color:#5a627c;max-width:34ch;">Your label, your spec — retail or wholesale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PACKAGING ══════════════════════════════════════════════ -->
+  <section style="background:#fff;padding:clamp(80px,9vw,130px) 6vw;">
+    <div class="bc-imgrow bc-section" style="max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,80px);align-items:center;">
+      <div class="bc-imgrow-img" style="position:relative;border-radius:10px;overflow:hidden;min-height:440px;background:repeating-linear-gradient(135deg,#e8dec8 0 18px,#f0e8d7 18px 36px);">
+        <span style="position:absolute;left:18px;bottom:18px;font-family:'Archivo',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#9b8e72;background:rgba(255,255,255,.74);padding:5px 10px;border-radius:3px;">photo — branded punnets &amp; export cartons</span>
+      </div>
+      <div>
+        <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E84E78;">— Packaging</div>
+        <h2 style="margin:18px 0 16px;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1.05;letter-spacing:-.02em;color:#2B3A67;">Your label, <span style="font-family:'Spectral',serif;font-weight:400;font-style:italic;color:#E0A52E;">your spec.</span></h2>
+        <p style="margin:0 0 24px;font-size:16px;line-height:1.6;color:#5a627c;max-width:48ch;">From retail punnets to bulk export cartons — packed, labelled and barcoded for your destination market.</p>
+        <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid #ece3ce;">
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #ece3ce;"><span style="width:8px;height:8px;border-radius:50%;background:#E0A52E;flex:0 0 auto;"></span><span style="font-size:15.5px;color:#2B3A67;font-weight:600;">Retail punnets &amp; clamshells — 125g to 500g</span></div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #ece3ce;"><span style="width:8px;height:8px;border-radius:50%;background:#E0A52E;flex:0 0 auto;"></span><span style="font-size:15.5px;color:#2B3A67;font-weight:600;">Private-label &amp; co-branded artwork</span></div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid #ece3ce;"><span style="width:8px;height:8px;border-radius:50%;background:#E0A52E;flex:0 0 auto;"></span><span style="font-size:15.5px;color:#2B3A67;font-weight:600;">Bulk &amp; foodservice cartons</span></div>
+          <div style="display:flex;align-items:center;gap:16px;padding:16px 0;"><span style="width:8px;height:8px;border-radius:50%;background:#E0A52E;flex:0 0 auto;"></span><span style="font-size:15.5px;color:#2B3A67;font-weight:600;">Recyclable &amp; compostable formats</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROCESS ════════════════════════════════════════════════ -->
+  <section class="bc-section" style="padding:clamp(80px,9vw,130px) 6vw;max-width:1180px;margin:0 auto;">
+    <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E84E78;">— Field to dock</div>
+    <h2 style="margin:18px 0 clamp(40px,4.5vw,64px);font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,50px);line-height:1.03;letter-spacing:-.02em;color:#2B3A67;">Our process, in eight steps.</h2>
+    <div class="bc-process" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#ddd3bd;border:1px solid #ddd3bd;border-radius:10px;overflow:hidden;">
+      <div style="background:#F6F1E7;padding:30px 24px 34px;">
+        <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:#E84E78;letter-spacing:.04em;">01</div>
+        <h3 style="margin:16px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Harvesting</h3>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#5a627c;">Hand-picked at optimal ripeness, in the cool of the morning.</p>
+      </div>
+      <div style="background:#F6F1E7;padding:30px 24px 34px;">
+        <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:#E84E78;letter-spacing:.04em;">02</div>
+        <h3 style="margin:16px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Quality sorting</h3>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#5a627c;">Graded by size, colour and firmness on arrival.</p>
+      </div>
+      <div style="background:#F6F1E7;padding:30px 24px 34px;">
+        <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:#E84E78;letter-spacing:.04em;">03</div>
+        <h3 style="margin:16px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Pre-cooling</h3>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#5a627c;">Core temperature dropped within the first hour.</p>
+      </div>
+      <div style="background:#F6F1E7;padding:30px 24px 34px;">
+        <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:#E84E78;letter-spacing:.04em;">04</div>
+        <h3 style="margin:16px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Packing</h3>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#5a627c;">To buyer specification — retail punnet or bulk.</p>
+      </div>
+      <div style="background:#F6F1E7;padding:30px 24px 34px;">
+        <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:#E84E78;letter-spacing:.04em;">05</div>
+        <h3 style="margin:16px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Cold storage</h3>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#5a627c;">Held in an unbroken, temperature-logged chain.</p>
+      </div>
+      <div style="background:#F6F1E7;padding:30px 24px 34px;">
+        <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:#E84E78;letter-spacing:.04em;">06</div>
+        <h3 style="margin:16px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Quality control</h3>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#5a627c;">Final QC, brix and lab checks before dispatch.</p>
+      </div>
+      <div style="background:#F6F1E7;padding:30px 24px 34px;">
+        <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:#E84E78;letter-spacing:.04em;">07</div>
+        <h3 style="margin:16px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Documentation</h3>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#5a627c;">Phyto, customs and full lot-level traceability.</p>
+      </div>
+      <div style="background:#F6F1E7;padding:30px 24px 34px;">
+        <div style="font-family:'Archivo',sans-serif;font-weight:800;font-size:15px;color:#E84E78;letter-spacing:.04em;">08</div>
+        <h3 style="margin:16px 0 8px;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Delivery</h3>
+        <p style="margin:0;font-size:14px;line-height:1.55;color:#5a627c;">Door-to-door by air and reefer to your DC.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CERTIFICATIONS ════════════════════════════════════════ -->
+  <section style="background:#6B7A3F;color:#fff;padding:clamp(80px,9vw,130px) 6vw;">
+    <div class="bc-section" style="max-width:1180px;margin:0 auto;">
+      <div style="text-align:center;max-width:58ch;margin:0 auto clamp(40px,4.5vw,60px);">
+        <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#dfe6c5;">— Compliance</div>
+        <h2 style="margin:18px 0 14px;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1.05;letter-spacing:-.02em;">International standards you can trust</h2>
+        <p style="margin:0;font-family:'Spectral',serif;font-style:italic;font-size:18px;color:#eef0dd;">Audited, certified and documented at every step.</p>
+      </div>
+      <div class="bc-certs" style="display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.18);border-radius:10px;overflow:hidden;">
+        <div style="background:#6B7A3F;padding:30px 22px 34px;">
+          <h3 style="margin:0 0 12px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;color:#fff;letter-spacing:-.01em;">GlobalG.A.P.</h3>
+          <p style="margin:0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82);">Good Agricultural Practice certified across every growing site.</p>
+        </div>
+        <div style="background:#6B7A3F;padding:30px 22px 34px;">
+          <h3 style="margin:0 0 12px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;color:#fff;letter-spacing:-.01em;">GRASP</h3>
+          <p style="margin:0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82);">Audited social and labour practice on top of GlobalG.A.P.</p>
+        </div>
+        <div style="background:#6B7A3F;padding:30px 22px 34px;">
+          <h3 style="margin:0 0 12px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;color:#fff;letter-spacing:-.01em;">BRCGS</h3>
+          <p style="margin:0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82);">Global food-safety standard for packing and handling.</p>
+        </div>
+        <div style="background:#6B7A3F;padding:30px 22px 34px;">
+          <h3 style="margin:0 0 12px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;color:#fff;letter-spacing:-.01em;">ISO 22000</h3>
+          <p style="margin:0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82);">Food-safety management across the full supply chain.</p>
+        </div>
+        <div style="background:#6B7A3F;padding:30px 22px 34px;">
+          <h3 style="margin:0 0 12px;font-family:'Archivo',sans-serif;font-weight:800;font-size:19px;color:#fff;letter-spacing:-.01em;">HACCP</h3>
+          <p style="margin:0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.82);">Hazard control at every critical point, documented.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:40px;">
+        <a href="#" class="bc-btn-dl">Download certificates →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ RESOURCES ═════════════════════════════════════════════ -->
+  <section class="bc-section" style="padding:clamp(80px,9vw,130px) 6vw;max-width:1180px;margin:0 auto;">
+    <div style="margin-bottom:clamp(32px,4vw,52px);">
+      <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E84E78;">— Resources</div>
+      <h2 style="margin:18px 0 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1.03;letter-spacing:-.02em;color:#2B3A67;">Everything a buyer needs.</h2>
+    </div>
+    <div class="bc-resources" style="display:grid;grid-template-columns:1fr 1fr;gap:0 56px;">
+      <a href="#" class="bc-resource-link" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid #ddd3bd;text-decoration:none;">
+        <span>
+          <span style="display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Product catalogue</span>
+          <span style="display:block;font-family:'Archivo',monospace;font-size:12px;letter-spacing:.06em;color:#9aa0b4;margin-top:4px;">PDF · 4.2 MB</span>
+        </span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;color:#E0A52E;">↓</span>
+      </a>
+      <a href="#" class="bc-resource-link" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid #ddd3bd;text-decoration:none;">
+        <span>
+          <span style="display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Company profile</span>
+          <span style="display:block;font-family:'Archivo',monospace;font-size:12px;letter-spacing:.06em;color:#9aa0b4;margin-top:4px;">PDF · 2.1 MB</span>
+        </span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;color:#E0A52E;">↓</span>
+      </a>
+      <a href="#" class="bc-resource-link" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid #ddd3bd;text-decoration:none;">
+        <span>
+          <span style="display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Packaging guide</span>
+          <span style="display:block;font-family:'Archivo',monospace;font-size:12px;letter-spacing:.06em;color:#9aa0b4;margin-top:4px;">PDF · 3.0 MB</span>
+        </span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;color:#E0A52E;">↓</span>
+      </a>
+      <a href="#" class="bc-resource-link" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid #ddd3bd;text-decoration:none;">
+        <span>
+          <span style="display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Product spec sheets</span>
+          <span style="display:block;font-family:'Archivo',monospace;font-size:12px;letter-spacing:.06em;color:#9aa0b4;margin-top:4px;">PDF · 1.8 MB</span>
+        </span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;color:#E0A52E;">↓</span>
+      </a>
+      <a href="#" class="bc-resource-link" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid #ddd3bd;text-decoration:none;">
+        <span>
+          <span style="display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Seasonal availability</span>
+          <span style="display:block;font-family:'Archivo',monospace;font-size:12px;letter-spacing:.06em;color:#9aa0b4;margin-top:4px;">PDF · 0.9 MB</span>
+        </span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;color:#E0A52E;">↓</span>
+      </a>
+      <a href="#" class="bc-resource-link" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid #ddd3bd;text-decoration:none;">
+        <span>
+          <span style="display:block;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Export terms &amp; Incoterms</span>
+          <span style="display:block;font-family:'Archivo',monospace;font-size:12px;letter-spacing:.06em;color:#9aa0b4;margin-top:4px;">PDF · 0.7 MB</span>
+        </span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:700;font-size:22px;color:#E0A52E;">↓</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ══ BUSINESSES WE SERVE ═══════════════════════════════════ -->
+  <section style="background:#fff;padding:clamp(70px,8vw,110px) 6vw;">
+    <div class="bc-section" style="max-width:1180px;margin:0 auto;text-align:center;">
+      <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E84E78;">— Who we supply</div>
+      <h2 style="margin:18px 0 clamp(34px,4vw,50px);font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(26px,3.2vw,42px);line-height:1.05;letter-spacing:-.02em;color:#2B3A67;">Businesses that demand quality</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:#2B3A67;border:1px solid #ddd3bd;padding:13px 24px;border-radius:999px;">Importers</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:#2B3A67;border:1px solid #ddd3bd;padding:13px 24px;border-radius:999px;">Wholesalers</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:#2B3A67;border:1px solid #ddd3bd;padding:13px 24px;border-radius:999px;">Supermarket chains</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:#2B3A67;border:1px solid #ddd3bd;padding:13px 24px;border-radius:999px;">Distributors</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:#2B3A67;border:1px solid #ddd3bd;padding:13px 24px;border-radius:999px;">HORECA</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:#2B3A67;border:1px solid #ddd3bd;padding:13px 24px;border-radius:999px;">Food service</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:#2B3A67;border:1px solid #ddd3bd;padding:13px 24px;border-radius:999px;">Specialty retail</span>
+        <span style="font-family:'Archivo',sans-serif;font-weight:600;font-size:15px;color:#2B3A67;border:1px solid #ddd3bd;padding:13px 24px;border-radius:999px;">Processors</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FAQ ════════════════════════════════════════════════════ -->
+  <section class="bc-section" style="padding:clamp(80px,9vw,130px) 6vw;max-width:880px;margin:0 auto;">
+    <div style="text-align:center;margin-bottom:clamp(34px,4vw,52px);">
+      <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E84E78;">— FAQ</div>
+      <h2 style="margin:18px 0 0;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(28px,3.4vw,46px);line-height:1.03;letter-spacing:-.02em;color:#2B3A67;">Buyer questions, answered</h2>
+    </div>
+
+    <details style="border-bottom:1px solid #ddd3bd;padding:6px 0;" class="bc-faq">
+      <summary style="list-style:none;-webkit-appearance:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">What are your minimum order volumes?<span class="bc-faq-icon" style="font-family:'Spectral',serif;font-size:24px;color:#E0A52E;flex:0 0 auto;transition:transform .25s;">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;line-height:1.65;color:#5a627c;max-width:64ch;">We supply from a single pallet for trial orders up to full reefer and air-freight programmes. Minimums vary by product and destination — we will confirm against your spec in the quote.</p>
+    </details>
+    <details style="border-bottom:1px solid #ddd3bd;padding:6px 0;" class="bc-faq">
+      <summary style="list-style:none;-webkit-appearance:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Which Incoterms do you offer?<span class="bc-faq-icon" style="font-family:'Spectral',serif;font-size:24px;color:#E0A52E;flex:0 0 auto;transition:transform .25s;">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;line-height:1.65;color:#5a627c;max-width:64ch;">EXW, FOB and CIF are standard, with DAP available to most European destinations. We will recommend the most efficient routing for your market.</p>
+    </details>
+    <details style="border-bottom:1px solid #ddd3bd;padding:6px 0;" class="bc-faq">
+      <summary style="list-style:none;-webkit-appearance:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Can you supply private-label packaging?<span class="bc-faq-icon" style="font-family:'Spectral',serif;font-size:24px;color:#E0A52E;flex:0 0 auto;transition:transform .25s;">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;line-height:1.65;color:#5a627c;max-width:64ch;">Yes. We pack to your specification — retail punnets, clamshells or bulk — with your branding, barcodes and labelling for the destination market.</p>
+    </details>
+    <details style="border-bottom:1px solid #ddd3bd;padding:6px 0;" class="bc-faq">
+      <summary style="list-style:none;-webkit-appearance:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">How do you guarantee the cold chain?<span class="bc-faq-icon" style="font-family:'Spectral',serif;font-size:24px;color:#E0A52E;flex:0 0 auto;transition:transform .25s;">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;line-height:1.65;color:#5a627c;max-width:64ch;">Fruit is pre-cooled within the first hour of harvest and held in a temperature-logged chain through packing, storage and transit. Data loggers travel with each consignment.</p>
+    </details>
+    <details style="border-bottom:1px solid #ddd3bd;padding:6px 0;" class="bc-faq">
+      <summary style="list-style:none;-webkit-appearance:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Which certifications do you hold?<span class="bc-faq-icon" style="font-family:'Spectral',serif;font-size:24px;color:#E0A52E;flex:0 0 auto;transition:transform .25s;">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;line-height:1.65;color:#5a627c;max-width:64ch;">GlobalG.A.P., GRASP, BRCGS, ISO 22000 and HACCP, with full lot-level traceability documentation available on request.</p>
+    </details>
+    <details style="border-bottom:1px solid #ddd3bd;padding:6px 0;" class="bc-faq">
+      <summary style="list-style:none;-webkit-appearance:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;font-family:'Archivo',sans-serif;font-weight:700;font-size:18px;color:#2B3A67;">Which markets do you ship to?<span class="bc-faq-icon" style="font-family:'Spectral',serif;font-size:24px;color:#E0A52E;flex:0 0 auto;transition:transform .25s;">+</span></summary>
+      <p style="margin:0 0 22px;font-size:15.5px;line-height:1.65;color:#5a627c;max-width:64ch;">Western Europe, the United Kingdom, Scandinavia and the Gulf, with new corridors added as volumes grow.</p>
+    </details>
+  </section>
+
+  <!-- ══ REQUEST A QUOTE ════════════════════════════════════════ -->
+  <!-- All "Request a quote" buttons scroll here via #bc-raq -->
+  <section id="bc-raq" style="background:#16203f;color:#fff;padding:clamp(80px,9vw,130px) 6vw;">
+    <div class="bc-quote bc-section" style="max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,5vw,80px);align-items:start;">
+      <!-- Left: copy -->
+      <div>
+        <div style="font-family:'Archivo',monospace;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E0A52E;">— Get started</div>
+        <h2 style="margin:18px 0 18px;font-family:'Archivo',sans-serif;font-weight:800;font-size:clamp(30px,3.6vw,52px);line-height:1.02;letter-spacing:-.02em;">Request a personalised quote.</h2>
+        <p style="margin:0 0 30px;font-size:16px;line-height:1.6;color:rgba(255,255,255,.74);max-width:42ch;">Tell us your products, volumes and destination. We'll come back with pricing, availability and a shipping plan — usually within one business day.</p>
+        <div style="display:flex;flex-direction:column;gap:14px;font-size:15px;color:rgba(255,255,255,.82);">
+          <div style="display:flex;align-items:center;gap:12px;"><span style="width:7px;height:7px;border-radius:50%;background:#E0A52E;flex:0 0 auto;"></span>Response within 24 hours</div>
+          <div style="display:flex;align-items:center;gap:12px;"><span style="width:7px;height:7px;border-radius:50%;background:#E0A52E;flex:0 0 auto;"></span>No minimum to start a conversation</div>
+          <div style="display:flex;align-items:center;gap:12px;"><span style="width:7px;height:7px;border-radius:50%;background:#E0A52E;flex:0 0 auto;"></span>Samples available on request</div>
+        </div>
+      </div>
+      <!-- Right: WordPress form placeholder -->
+      <div class="bc-quote-placeholder" style="border:2px dashed rgba(224,165,46,.55);border-radius:12px;background:rgba(255,255,255,.04);min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 28px;">
+        <div style="font-family:'Archivo',monospace;font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#E0A52E;margin-bottom:16px;">WordPress form goes here</div>
+        <div style="font-family:'Archivo',sans-serif;font-weight:700;font-size:20px;color:#fff;margin-bottom:10px;">Embed your FluentForm</div>
+        <code style="font-family:'Archivo',monospace;font-size:15px;color:#2B3A67;background:#E0A52E;padding:10px 18px;border-radius:6px;">[fluentform id="5"]</code>
+        <p style="margin:18px 0 0;font-size:13.5px;line-height:1.55;color:rgba(255,255,255,.6);max-width:34ch;">Drop the shortcode above into this section in WordPress to render your live quote-request form.</p>
+      </div>
+    </div>
+  </section>
+
+</section><!-- /homepage -->
+
+<script>
+/* ── Smooth scroll for all in-page quote links ── */
+document.querySelectorAll('a[href="#bc-raq"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.getElementById('bc-raq');
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* ── FAQ: swap + to × icon ── */
+document.querySelectorAll('details.bc-faq').forEach(function(el) {
+  el.addEventListener('toggle', function() {
+    var icon = el.querySelector('.bc-faq-icon');
+    if (icon) icon.textContent = el.open ? '×' : '+';
+  });
+});
+</script>
+
+</body>
+</html>
